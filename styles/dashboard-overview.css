@@ -1,0 +1,391 @@
+/* 
+ * MP Citizen Portal 2.0 - Dashboard Overview Styles
+ * Author: Senior UI/UX Designer & Frontend Architect
+ */
+
+/* --- Welcome Banner Card --- */
+.db-welcome-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-md);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.db-welcome-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.db-welcome-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.85rem;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+}
+
+.db-welcome-text h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  font-family: var(--font-heading);
+}
+
+.db-welcome-text p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* User Verification Badges */
+.db-verification-badges {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.verification-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: var(--color-green);
+}
+
+.verification-badge.pending {
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  color: var(--color-saffron);
+}
+
+/* Welcome Card Right (Quick Citizen ID info) */
+.db-welcome-right {
+  text-align: right;
+}
+
+.citizen-id-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  padding: 0.65rem 1rem;
+  text-align: left;
+}
+
+[data-theme="light"] .citizen-id-box {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.citizen-id-lbl {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.citizen-id-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: monospace;
+}
+
+/* --- Animated Statistics Grid --- */
+.db-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.db-stat-card {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-card-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.stat-card-number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.stat-card-icon-wrapper {
+  height: 48px;
+  width: 48px;
+  border-radius: var(--border-radius-sm);
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: var(--transition-smooth);
+}
+
+.db-stat-card:hover .stat-card-icon-wrapper {
+  background: var(--color-primary);
+  color: #fff;
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Custom icon themes */
+.db-stat-card.approved .stat-card-icon-wrapper {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-green);
+}
+.db-stat-card.approved:hover .stat-card-icon-wrapper {
+  background: var(--color-green);
+  color: #fff;
+}
+
+.db-stat-card.review .stat-card-icon-wrapper {
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--color-secondary);
+}
+.db-stat-card.review:hover .stat-card-icon-wrapper {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.db-stat-card.alert .stat-card-icon-wrapper {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+.db-stat-card.alert:hover .stat-card-icon-wrapper {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* --- Charts Section Layout --- */
+.db-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-card-col-8 {
+  grid-column: span 8;
+}
+
+.chart-card-col-4 {
+  grid-column: span 4;
+}
+
+.db-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.db-chart-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.db-chart-container {
+  position: relative;
+  height: 280px;
+  width: 100%;
+}
+
+/* --- Bottom Activity Section --- */
+.db-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.activity-card-col-7 {
+  grid-column: span 7;
+}
+
+.quickactions-card-col-5 {
+  grid-column: span 5;
+}
+
+/* Recent Activity List */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem;
+  border-radius: var(--border-radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-fast);
+}
+
+[data-theme="light"] .activity-item {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.activity-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-glow);
+}
+
+.activity-item-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.activity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.activity-dot.green { background-color: var(--color-green); }
+.activity-dot.saffron { background-color: var(--color-saffron); }
+
+.activity-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.activity-text {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.activity-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.activity-status-pill {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+}
+
+/* Quick Action Cards Grid (Dashboard bottom) */
+.quickactions-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.quickaction-tile {
+  padding: 1.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.quickaction-tile i {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.quickaction-tile span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.quickaction-tile:hover {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--border-glow);
+}
+
+.quickaction-tile:hover i {
+  transform: translateY(-2px);
+  color: var(--color-secondary);
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-width: 1200px) {
+  .db-charts-grid {
+    grid-template-columns: 1fr;
+  }
+  .chart-card-col-8, .chart-card-col-4 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 992px) {
+  .db-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+  .activity-card-col-7, .quickactions-card-col-5 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 768px) {
+  .db-welcome-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+  .db-welcome-right {
+    text-align: left;
+    width: 100%;
+  }
+  .citizen-id-box {
+    width: 100%;
+  }
+  .stat-card-number {
+    font-size: 1.85rem;
+  }
+}

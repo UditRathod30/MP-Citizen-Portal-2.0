@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MP Citizen Portal 2.0 - Unified AI-powered digital experience gateway of the Government of Madhya Pradesh, India. Built with transparency and citizen welfare in mind.">
+  <title data-translate="portal_title">MP Citizen Portal 2.0</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+
+  <!-- Glassmorphic Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      <!-- Brand Logo & Title -->
+      <a href="#" class="brand" aria-label="MP Citizen Portal Home">
+        <img src="assets/mp_logo.png" alt="Government of Madhya Pradesh Emblem" class="brand-logo" id="logo-img">
+        <div class="brand-text">
+          <span class="brand-title" data-translate="portal_title">MP Citizen Portal 2.0</span>
+          <!-- <span class="brand-subtitle" data-translate="hero_badge">AI-Powered Citizen Services</span> -->
+        </div>
+      </a>
+
+      <!-- Center Nav Search Bar -->
+      <div class="nav-search">
+        <div class="search-input-wrapper">
+          <i class="fas fa-search"></i>
+          <input type="text" id="nav-search-input" placeholder="Search services" data-translate="search_placeholder">
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link" data-translate="nav_home">Home</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link" data-translate="nav_dashboards">Dashboards <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i></a>
+          <div class="nav-dropdown-content glass-panel">
+            <a href="dashboard.html"><i class="fas fa-user-shield" style="margin-right: 8px; color: var(--color-primary); width: 16px;"></i> <span data-translate="lbl_citizen_portal">Citizen Portal</span></a>
+            <a href="student-dashboard.html"><i class="fas fa-graduation-cap" style="margin-right: 8px; color: #3b82f6; width: 16px;"></i> <span data-translate="lbl_student_hub">Student Hub</span></a>
+            <a href="farmer-dashboard.html"><i class="fas fa-tractor" style="margin-right: 8px; color: #10b981; width: 16px;"></i> <span data-translate="lbl_kisan_hub">Kisan Hub</span></a>
+            <a href="women-dashboard.html"><i class="fas fa-venus" style="margin-right: 8px; color: #ec4899; width: 16px;"></i> <span data-translate="lbl_women_hub">Ladli Behna Hub</span></a>
+          </div>
+        </div>
+          <a href="#services-directory" class="nav-link" data-translate="nav_services">Services</a>
+        <a href="#notifications" class="nav-link" data-translate="nav_notifications">Notifications</a>
+        <a href="#footer" class="nav-link" data-translate="nav_help">Help</a>
+      </nav>
+
+      <!-- Action Toggles -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <button class="btn-lang" id="lang-toggle-btn">ही</button>
+        
+        <!-- Dark/Light Mode Switcher -->
+        <button class="btn-toggle" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+          <i class="fas fa-sun"></i>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="btn-login" data-translate="btn_login">Login/Register</a>
+
+        <!-- Mobile Menu Trigger -->
+        <button class="mobile-menu-btn" aria-label="Open Mobile Navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Drone-Shot Hero Section -->
+  <section class="hero" id="hero">
+    <!-- Slide Images (Drone views of MP) -->
+    <div class="hero-slider">
+      <div class="slide" style="background-image: url('assets/sanchi_stupa.png');"></div>
+      <div class="slide" style="background-image: url('assets/khajuraho.png');"></div>
+      <div class="slide" style="background-image: url('assets/gwalior_fort.png');"></div>
+      <div class="slide" style="background-image: url('assets/mp_tiger.png');"></div>
+      <div class="slide" style="background-image: url('assets/narmada_river.png');"></div>
+      <div class="slide" style="background-image: url('assets/wheat_fields.png');"></div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <!-- Badge -->
+      <div class="hero-badge float-element">
+        <i class="fas fa-sparkles"></i>
+        <span data-translate="hero_badge">AI-POWERED CITIZEN SERVICES</span>
+      </div>
+
+      <!-- Slogan -->
+      <h1 class="hero-title" data-translate="hero_title">Empowering Citizens, Elevating Governance</h1>
+      <p class="hero-desc" data-translate="hero_desc">Access all Madhya Pradesh government services, state schemes, and digital resources at one place with real-time AI assistance.</p>
+
+      <!-- Hero AI Search Input -->
+      <div class="hero-search-container">
+        <i class="fas fa-search hero-search-icon"></i>
+        <input type="text" id="hero-search-input" placeholder="Ask about a service, scheme,(e.g., Apply for...)" data-translate="hero_placeholder">
+        
+        <!-- Voice Assistant Button -->
+        <button class="voice-search-btn" id="voice-search-btn" title="Voice" data-translate="voice_btn_title">
+          <i class="fas fa-microphone"></i>
+        </button>
+
+        <!-- Search Button -->
+        <button class="hero-search-btn">
+          <span data-translate="search_btn">Search</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <!-- Search Suggestions Autocomplete Dropdown -->
+        <div class="search-suggestions-dropdown" id="search-dropdown"></div>
+      </div>
+
+      <!-- Quick Search Tags -->
+      <div class="search-tags">
+        <span data-translate="trending_lbl">Trending:</span>
+        <button class="search-tag" data-translate="tag_cm_helpline">CM Helpline 181</button>
+        <button class="search-tag" data-translate="tag_ration">Ration Card Application</button>
+        <button class="search-tag" data-translate="tag_scholarship">e-Scholarships</button>
+        <button class="search-tag" data-translate="tag_ladli">Ladli Behna Scheme</button>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <a href="#quick-actions" class="scroll-indicator" aria-label="Scroll to services">
+      <span data-translate="scroll_down">SCROLL TO SERVICES</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+    </a>
+  </section>
+
+  <!-- Live Bulletins Ticker Bar -->
+  <section class="news-marquee-container glass-panel" id="notifications">
+    <div class="marquee-badge" data-translate="notif_lbl">LIVE BULLETINS</div>
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item1">Apply for Post-Matric Scholarships open till July 31, 2026.</span></div>
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item2">Chief Minister announces new subsidy package for solar pump installation.</span></div>
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item3">Lokayukta portal integrated with central grievance dashboard.</span></div>
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item4">Madhya Pradesh ranks #1 in Digital Service Delivery for the consecutive third year.</span></div>
+        <!-- Duplicate for Infinite Loop Scroll -->
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item1">Apply for Post-Matric Scholarships open till July 31, 2026.</span></div>
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item2">Chief Minister announces new subsidy package for solar pump installation.</span></div>
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item3">Lokayukta portal integrated with central grievance dashboard.</span></div>
+        <div class="marquee-item"><span class="bullet"></span><span data-translate="notif_item4">Madhya Pradesh ranks #1 in Digital Service Delivery for the consecutive third year.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Action Hub -->
+  <section class="section" id="quick-actions">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle" data-translate="qa_subtitle">Instant Access</span>
+        <h2 class="section-title" data-translate="qa_title">Quick Action Hub</h2>
+        <p class="section-desc" data-translate="qa_desc">Direct access channels to Madhya Pradesh's most requested citizen utility tools and support helplines.</p>
+      </div>
+
+      <div class="quick-actions-grid">
+        <!-- Action 1: CM Helpline -->
+        <div class="action-card glass-panel hover-lift reveal reveal-delay-1">
+          <div class="action-icon-wrapper">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="action-title" data-translate="cm_title">CM Helpline 181</h3>
+          <p class="action-desc" data-translate="cm_desc">Submit public grievances, track complaints, or access public service delivery guarantees directly.</p>
+          <a href="https://cmhelpline.mp.gov.in/" target="_blank" rel="noopener noreferrer" class="action-link">
+            <span data-translate="btn_access">Access Now</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        <!-- Action 2: Land Records -->
+        <div class="action-card glass-panel hover-lift reveal reveal-delay-2">
+          <div class="action-icon-wrapper">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3 class="action-title" data-translate="land_title">Bhulekh Land Records</h3>
+          <p class="action-desc" data-translate="land_desc">Search, view, and print certified copies of land maps, Khasra, Khatauni, and ownership records.</p>
+          <a href="https://webgis2.mpbhulekh.gov.in/#/home" target="_blank" rel="noopener noreferrer" class="action-link">
+            <span data-translate="btn_access">Access Now</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        <!-- Action 3: e-Municipality -->
+        <div class="action-card glass-panel hover-lift reveal reveal-delay-3">
+          <div class="action-icon-wrapper">
+            <i class="fas fa-city"></i>
+          </div>
+          <h3 class="action-title" data-translate="mun_title">e-Municipality Portal</h3>
+          <p class="action-desc" data-translate="mun_desc">Pay property taxes, apply for water connection, birth, death, and trade certificates online.</p>
+          <a href="https://enagarpalika.mp.gov.in/home" target="_blank" rel="noopener noreferrer" class="action-link">
+            <span data-translate="btn_access">Access Now</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        <!-- Action 4: e-Uparjan -->
+        <div class="action-card glass-panel hover-lift reveal reveal-delay-4">
+          <div class="action-icon-wrapper">
+            <i class="fas fa-tractor"></i>
+          </div>
+          <h3 class="action-title" data-translate="farmer_title">e-Uparjan MP</h3>
+          <p class="action-desc" data-translate="farmer_desc">Crop procurement registration, minimum support price payments, and crop insurance tracking.</p>
+          <a href="farmer-dashboard.html" class="action-link">
+            <span data-translate="btn_access">Access Now</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Focus Area Section (Cultural, Women Empowerment, Students) -->
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle" data-translate="feat_subtitle">MP Development & Heritage</span>
+        <h2 class="section-title" data-translate="feat_title">A Land of Opportunity, Culture & Progress</h2>
+        <p class="section-desc" data-translate="feat_desc">Explore how Madhya Pradesh merges deep cultural roots with tech-driven citizen empowerment.</p>
+      </div>
+
+      <div class="featured-grid">
+        <!-- Women Empowerment -->
+        <div class="featured-card col-6 reveal">
+          <div class="featured-card-bg" style="background-image: url('assets/wheat_fields.png');"></div>
+          <div class="featured-card-overlay"></div>
+          <div class="featured-card-content">
+            <span class="featured-tag" data-translate="card_emp_tag">EMPOWERMENT</span>
+            <h3 class="featured-card-title" data-translate="card_emp_title">Ladli Behna Yojana</h3>
+            <p class="featured-card-desc" data-translate="card_emp_desc">Financial security, healthcare access, and empowerment benefits for women across MP.</p>
+            <a href="women-dashboard.html" class="btn-login" data-translate="btn_access">Access Now</a>
+          </div>
+        </div>
+
+        <!-- Culture & Tourism -->
+        <div class="featured-card col-6 reveal">
+          <div class="featured-card-bg" style="background-image: url('assets/sanchi_stupa.png');"></div>
+          <div class="featured-card-overlay"></div>
+          <div class="featured-card-content">
+            <span class="featured-tag" data-translate="card_tour_tag">TOURISM & HERITAGE</span>
+            <h3 class="featured-card-title" data-translate="card_tour_title">Heart of Incredible India</h3>
+            <p class="featured-card-desc" data-translate="card_tour_desc">Explore historic monuments like Sanchi Stupa, Khajuraho Temples, and wildlife sanctuaries.</p>
+            <a href="https://www.mpheritage.com/" target="_blank" rel="noopener noreferrer" class="btn-login" data-translate="btn_access">Access Now</a>
+          </div>
+        </div>
+
+        <!-- Students & Education -->
+        <!-- <div class="featured-card col-12 reveal">
+          <div class="featured-card-bg" style="background-image: url('assets/gwalior_fort.png');"></div>
+          <div class="featured-card-overlay"></div>
+          <div class="featured-card-content">
+            <span class="featured-tag" data-translate="card_edu_tag">EDUCATION & YOUTH</span>
+            <h3 class="featured-card-title" data-translate="card_edu_title">e-Scholarships Portal</h3>
+            <p class="featured-card-desc" data-translate="card_edu_desc">Digital support systems and scholarship benefits directly dispatched to MP students.</p>
+            <a href="student-dashboard.html" class="btn-login" data-translate="btn_access">Access Now</a>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </section>
+
+  <!-- Live Statistics Section -->
+  <section class="section stats-section" id="statistics">
+    <div class="container">
+      <div class="stats-grid">
+        <!-- Stat 1: Registered Citizens -->
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number" data-target="4.5M+" data-translate="stat_citizens">0</div>
+          <div class="stat-label" data-translate="stat_citizens_lbl">Active Citizens</div>
+          <div class="stat-desc" data-translate="stat_citizens_desc">Registered users on the portal</div>
+        </div>
+
+        <!-- Stat 2: Active Services -->
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number" data-target="650+" data-translate="stat_services">0</div>
+          <div class="stat-label" data-translate="stat_services_lbl">Services Offered</div>
+          <div class="stat-desc" data-translate="stat_services_desc">Completely digital end-to-end services</div>
+        </div>
+
+        <!-- Stat 3: Welfare Schemes -->
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-number" data-target="120+" data-translate="stat_schemes">0</div>
+          <div class="stat-label" data-translate="stat_schemes_lbl">Govt Schemes</div>
+          <div class="stat-desc" data-translate="stat_schemes_desc">Empowerment and welfare programs</div>
+        </div>
+
+        <!-- Stat 4: Grievance Resolution -->
+        <div class="stat-item reveal reveal-delay-4">
+          <div class="stat-number" data-target="98.4%" data-translate="stat_resolved">0</div>
+          <div class="stat-label" data-translate="stat_resolved_lbl">Grievance Resolution</div>
+          <div class="stat-desc" data-translate="stat_resolved_desc">Fastest resolution rate in the country</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Directory Index Section -->
+  <section class="section" id="services-directory">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle" data-translate="dir_subtitle">Services Directory</span>
+        <h2 class="section-title" data-translate="dir_title">Search Services by Audience</h2>
+        <p class="section-desc" data-translate="dir_desc">Quickly browse and access the government services and schemes that matter directly to you.</p>
+      </div>
+
+      <!-- Service Filter Tabs -->
+      <div class="tabs-container reveal">
+        <button class="tab-btn active" data-filter="all" data-translate="tab_all">All Services</button>
+        <button class="tab-btn" data-filter="citizens" data-translate="tab_citizens">For Citizens</button>
+        <button class="tab-btn" data-filter="farmers" data-translate="tab_farmers">For Farmers</button>
+        <button class="tab-btn" data-filter="students" data-translate="tab_students">For Students</button>
+        <button class="tab-btn" data-filter="business" data-translate="tab_business">For Businesses</button>
+        <button class="tab-btn" data-filter="tourists" data-translate="tab_tourists">For Tourists</button>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="services-list-grid reveal">
+        <!-- Service 1 -->
+        <div class="service-item-card glass-panel reveal" data-category="citizens">
+          <div class="service-item-icon"><i class="fas fa-file-invoice"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_birth">Birth & Death Registration</h4>
+            <p class="service-item-desc" data-translate="s_birth_d">Apply and download municipal birth/death certificates.</p>
+            <a href="https://eseva.mp.gov.in/cms/" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_citizens">For Citizens</span>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-item-card glass-panel reveal" data-category="citizens">
+          <div class="service-item-icon"><i class="fas fa-id-card"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_ration">Apply for New Ration Card</h4>
+            <p class="service-item-desc" data-translate="s_ration_d">Department of Food, Civil Supplies, and Consumer Protection.</p>
+            <a href="https://csmsmpscsc.mp.gov.in/rationmitra/Dasboard/Public/Dasboard.aspx" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_citizens">For Citizens</span>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-item-card glass-panel reveal" data-category="citizens">
+          <div class="service-item-icon"><i class="fas fa-home"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_domicile">Domicile / Resident Certificate</h4>
+            <p class="service-item-desc" data-translate="s_domicile_d">Official local residence certificate for education & employment.</p>
+            <a href="https://dhar.nic.in/en/service/domicile-certificate/" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_citizens">For Citizens</span>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-item-card glass-panel reveal" data-category="farmers">
+          <div class="service-item-icon"><i class="fas fa-scroll"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_khasra">Khasra/Khatauni Copy</h4>
+            <p class="service-item-desc" data-translate="s_khasra_d">Land records and maps downloadable under MP Bhulekh.</p>
+            <a href="https://webgis2.mpbhulekh.gov.in/#/home" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_farmers">For Farmers</span>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-item-card glass-panel reveal" data-category="farmers">
+          <div class="service-item-icon"><i class="fas fa-shield-halved"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_insurance">Pradhan Mantri Fasal Bima</h4>
+            <p class="service-item-desc" data-translate="s_insurance_d">Crop insurance and calamity claim support portal for MP farmers.</p>
+            <a href="https://www.pmfby.gov.in/" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_farmers">For Farmers</span>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-item-card glass-panel reveal" data-category="farmers">
+          <div class="service-item-icon"><i class="fas fa-solar-panel"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_solar">Solar Pump Subsidy Registration</h4>
+            <p class="service-item-desc" data-translate="s_solar_d">Apply for agricultural solar water pumps with government financial subsidy.</p>
+            <a href="https://cmsolarpump.mp.gov.in/SchemeInfo" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_farmers">For Farmers</span>
+          </div>
+        </div>
+
+        <!-- Service 7 -->
+        <div class="service-item-card glass-panel reveal" data-category="students">
+          <div class="service-item-icon"><i class="fas fa-user-graduate"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_scholar">Post-Matric Scholarship Scheme</h4>
+            <p class="service-item-desc" data-translate="s_scholar_d">Financial support for students belonging to SC, ST, OBC and EWS categories.</p>
+            <a href="https://hescholarship.mp.gov.in/Public/OtherSchemes/GB.aspx?ID=MTM=" target="_blank" class="btn-apply">AppLy Now(obc)</a>
+            <span class="service-item-badge" data-translate="tab_students">For Students</span>
+          </div>
+        </div>
+
+        <!-- Service 8 -->
+        <div class="service-item-card glass-panel reveal" data-category="students">
+          <div class="service-item-icon"><i class="fas fa-laptop"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_laptop">Free Laptop Scheme Registration</h4>
+            <p class="service-item-desc" data-translate="s_laptop_d">Incentive scheme for students scoring 75% or above in Board exams.</p>
+            <a href="https://www.mpeducationgyandeep.in/2026/05/mp-free-laptop-scheme-list-2025-26.html#gsc.tab=0" target="_blank" class="btn-apply">Get Details</a>
+            <span class="service-item-badge" data-translate="tab_students">For Students</span>
+          </div>
+        </div>
+
+        <!-- Service 9 -->
+        <div class="service-item-card glass-panel reveal" data-category="business">
+          <div class="service-item-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_business">Railway Ticket Booking</h4>
+            <p class="service-item-desc" data-translate="s_business_d">Book railway tickets online for domestic and international travel.</p>
+            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="btn-apply">Go to IRCTC</a>
+            <span class="service-item-badge" data-translate="tab_business">For Businesses</span>
+          </div>
+        </div>
+
+        <!-- Service 10 -->
+        <div class="service-item-card glass-panel reveal" data-category="business">
+          <div class="service-item-icon"><i class="fas fa-percent"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_gst">MP Commercial Tax Portal</h4>
+            <p class="service-item-desc" data-translate="s_gst_d">Register and file state commercial taxes and professional taxes.</p>
+            <a href="https://mptax.mp.gov.in/mpvatweb/" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_business">For Businesses</span>
+          </div>
+        </div>
+
+        <!-- Service 11 -->
+        <div class="service-item-card glass-panel reveal" data-category="tourists">
+          <div class="service-item-icon"><i class="fas fa-hotel"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_tour">MP Tourism Hotel Booking</h4>
+            <p class="service-item-desc" data-translate="s_tour_d">Official booking for heritage hotels, wildlife safaris, and packages.</p>
+            <a href="https://www.mptourism.com/" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_tourists">For Tourists</span>
+          </div>
+        </div>
+
+        <!-- Service 12 -->
+        <div class="service-item-card glass-panel reveal" data-category="tourists">
+          <div class="service-item-icon"><i class="fas fa-user-check"></i></div>
+          <div class="service-item-info">
+            <h4 class="service-item-title" data-translate="s_guide">Approved Tour Guide Database</h4>
+            <p class="service-item-desc" data-translate="s_guide_d">Search and hire verified multilingual guides across historic sites.</p>
+            <a href="https://www.mptourism.com/" target="_blank" class="btn-apply">AppLy Now</a>
+            <span class="service-item-badge" data-translate="tab_tourists">For Tourists</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Floating AI Assistant Widget -->
+  <div class="floating-assistant" id="chatbot-assistant">
+    <button class="btn-assistant-trigger" id="assistant-trigger" aria-label="Open MP-AI Support Assistant">
+      <i class="fas fa-robot"></i>
+    </button>
+    
+    <!-- Chat window -->
+    <div class="chatbot-window glass-panel" id="chatbot-window">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+          <div class="chat-title-wrapper">
+            <h4>MP-AI Assistant</h4>
+            <span class="chat-status">Online</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" id="chat-close" aria-label="Close Chat Window">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <!-- Message Board -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Filled by JS -->
+      </div>
+      
+      <!-- Input Panel -->
+      <form class="chat-input-area" id="chat-input-form">
+        <input type="text" id="chat-message-input" placeholder="Type a message..." aria-label="Chat input message">
+        <button type="submit" class="chat-send-btn" aria-label="Send message">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive Voice Search Overlay Modal -->
+  <div class="voice-search-modal" id="voice-modal">
+    <div class="voice-modal-overlay"></div>
+    <div class="voice-modal-content glass-panel">
+      <div class="voice-wave-container">
+        <div class="voice-mic-glow">
+          <i class="fas fa-microphone"></i>
+        </div>
+      </div>
+      
+      <h3 class="voice-modal-title" id="voice-status">Listening...</h3>
+      <p class="voice-modal-status" data-translate="voice_btn_title">Voice Search</p>
+      
+      <!-- Transcribing Wave -->
+      <div class="sound-wave">
+        <div class="soundwave-line wave-1"></div>
+        <div class="soundwave-line wave-2"></div>
+        <div class="soundwave-line wave-3"></div>
+        <div class="soundwave-line wave-4"></div>
+        <div class="soundwave-line wave-5"></div>
+        <div class="soundwave-line wave-6"></div>
+        <div class="soundwave-line wave-7"></div>
+        <div class="soundwave-line wave-8"></div>
+      </div>
+      
+      <!-- Live transcript box -->
+      <div class="voice-transcript" id="voice-transcript"></div>
+      
+      <button class="voice-close-btn" id="voice-close-btn">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Logo Col -->
+        <div class="footer-brand">
+          <h3 class="footer-brand-title" data-translate="portal_title">MP Citizen Portal 2.0</h3>
+          <p class="footer-brand-desc" data-translate="footer_desc">MP Citizen Portal 2.0 is the unified AI-powered digital service delivery gateway of the Government of Madhya Pradesh, India.</p>
+          
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@jansamparkmpofficial" class="social-icon" target="_blank" aria-label="YouTube" ><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Links Col 1 -->
+        <div>
+          <h4 class="footer-col-title" data-translate="footer_col1">Quick Links</h4>
+          <div class="footer-links">
+            <a href="#" data-translate="link_about">About MP Govt</a>
+            <a href="#" data-translate="link_policies">State Policies</a>
+            <a href="#" data-translate="link_departments">Government Departments</a>
+            <a href="#" data-translate="link_tenders">Tenders & Procurements</a>
+          </div>
+        </div>
+
+        <!-- Links Col 2 -->
+        <div>
+          <h4 class="footer-col-title" data-translate="footer_col2">Support & Help</h4>
+          <div class="footer-links">
+            <a href="#" data-translate="link_helpdesk">24x7 Portal Helpdesk</a>
+            <a href="#" data-translate="link_faq">Frequently Asked Questions</a>
+            <a href="#" data-translate="link_grievance">File a Public Grievance</a>
+            <a href="#" data-translate="link_feedback">Submit Website Feedback</a>
+          </div>
+        </div>
+
+        <!-- Contact Col -->
+        <div>
+          <h4 class="footer-col-title" data-translate="footer_col3">Contact Government</h4>
+          <div class="footer-contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span data-translate="contact_address">Vallabh Bhawan, Mantralaya, Bhopal, Madhya Pradesh - 462004</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <span data-translate="contact_phone">CM Helpline: 181 | Portal Help: 1800-233-179</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span data-translate="contact_email">support.portal@mp.gov.in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="footer-bottom">
+        <p data-translate="footer_copy">© 2026 Government of Madhya Pradesh. Designed and Developed for Digital India.</p>
+        <div class="footer-bottom-links">
+          <a href="#" data-translate="footer_privacy">Privacy Policy</a>
+          <a href="#" data-translate="footer_terms">Terms of Service</a>
+          <a href="#" data-translate="footer_sitemap">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/ai-voice.js"></script>
+</body>
+</html>

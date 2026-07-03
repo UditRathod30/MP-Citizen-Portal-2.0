@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Secure Login - MP Citizen Portal 2.0. Access all Madhya Pradesh government services with dual authentication.">
+  <title data-translate="login_title">Welcome Back | MP Citizen Portal 2.0</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core Design System & Auth Custom Styles -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body>
+
+  <!-- Clean Auth Header -->
+  <header class="auth-header" id="auth-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand" aria-label="MP Citizen Portal Home">
+        <img src="assets/mp_logo.png" alt="Government of Madhya Pradesh Emblem" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title" data-translate="auth_portal_title">MP Citizen Portal 2.0</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- Return Home Button -->
+        <a href="index.html" class="btn-back-home" data-translate="btn_back_home">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <!-- Language Switcher -->
+        <button class="btn-lang" id="lang-toggle-btn">हि</button>
+        
+        <!-- Dark/Light Mode Switcher -->
+        <button class="btn-toggle" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Heritage Slideshow Background -->
+  <div class="auth-bg-slider">
+    <div class="auth-bg-slide" style="background-image: url('assets/sanchi_stupa.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/khajuraho.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/gwalior_fort.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/mp_tiger.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/narmada_river.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/wheat_fields.png');"></div>
+  </div>
+  <div class="auth-bg-overlay"></div>
+  <div class="auth-orbs-container">
+    <div class="auth-orb orb-primary"></div>
+    <div class="auth-orb orb-secondary"></div>
+    <div class="auth-orb orb-saffron"></div>
+  </div>
+  <div class="auth-particles"></div>
+
+  <!-- Primary Wrapper -->
+  <main class="auth-wrapper">
+    <div class="auth-container">
+      <div class="auth-card">
+        
+        <!-- Loading & Success Fullscreen Overlay -->
+        <div class="auth-loader-overlay" id="auth-overlay">
+          <div class="auth-overlay-spinner" id="auth-spinner"></div>
+          <div class="auth-loader-text" id="auth-loader-text">Verifying credentials...</div>
+          <div class="auth-success-box" id="auth-success-box">
+            <div class="success-checkmark">
+              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+              </svg>
+            </div>
+            <h3 class="auth-overlay-text" id="auth-success-title">Login Successful</h3>
+            <p class="auth-subtitle" id="auth-success-desc" style="margin-top: 0.5rem;">Redirecting to portal...</p>
+          </div>
+        </div>
+
+        <!-- Emblem & Card Header -->
+        <div class="auth-logo-header">
+          <img src="assets/mp_logo.png" alt="MP Government Emblem" class="auth-emblem">
+          <h2 class="auth-title" data-translate="login_title">Welcome Back</h2>
+          <p class="auth-subtitle" data-translate="login_subtitle">Secure gateway to Madhya Pradesh Digital Services</p>
+        </div>
+
+        <!-- Segmented Tab Controls -->
+        <div class="auth-tabs" role="tablist">
+          <button class="auth-tab active" data-tab="email" role="tab" aria-selected="true" data-translate="tab_email">Email Login</button>
+          <button class="auth-tab" data-tab="mobile" role="tab" aria-selected="false" data-translate="tab_mobile">Mobile Login</button>
+        </div>
+
+        <!-- Form A: Email + Password Login -->
+        <form id="login-email-form" novalidate>
+          <div class="auth-form-group">
+            <input type="email" id="login-email" class="auth-input-control" placeholder=" " required autocomplete="username">
+            <label for="login-email" class="auth-input-label" data-translate="label_email">Email Address</label>
+            <i class="fas fa-envelope auth-input-icon"></i>
+            <span class="auth-validation-msg"></span>
+          </div>
+          
+          <div class="auth-form-group">
+            <input type="password" id="login-password" class="auth-input-control" placeholder=" " required autocomplete="current-password">
+            <label for="login-password" class="auth-input-label" data-translate="label_password">Password</label>
+            <i class="fas fa-lock auth-input-icon"></i>
+            <button type="button" class="auth-password-toggle" aria-label="Toggle Password Visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+            <span class="auth-validation-msg"></span>
+          </div>
+
+          <div class="auth-options">
+            <label class="auth-remember-me">
+              <input type="checkbox" id="login-remember">
+              <span data-translate="chk_remember">Remember Me</span>
+            </label>
+            <a href="forgot-password.html" class="auth-forgot-link" data-translate="link_forgot">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="btn-auth-submit">
+            <span class="btn-auth-spinner"></span>
+            <span data-translate="btn_login">Login Securely</span>
+          </button>
+        </form>
+
+        <!-- Form B: Mobile Number + OTP Login -->
+        <form id="login-mobile-form" style="display: none;" novalidate>
+          <!-- CM Safety Warning Banner -->
+          <div class="auth-safety-banner" data-translate="banner_otp_warning">
+            <i class="fas fa-shield-halved"></i>
+            <span class="auth-safety-text"><strong>CM Helpline 181 Security Alert:</strong> Never share your verification OTP with anyone, including government representatives.</span>
+          </div>
+
+          <div class="auth-form-group">
+            <input type="tel" id="login-mobile" class="auth-input-control" placeholder=" " required maxlength="10" autocomplete="tel">
+            <label for="login-mobile" class="auth-input-label" data-translate="label_mobile">Mobile Number</label>
+            <i class="fas fa-phone auth-input-icon"></i>
+            <span class="auth-validation-msg"></span>
+          </div>
+
+          <button type="submit" class="btn-auth-submit">
+            <span class="btn-auth-spinner"></span>
+            <span data-translate="btn_send_otp">Send Verification OTP</span>
+          </button>
+        </form>
+
+        <!-- Form Redirection Option -->
+        <div class="auth-redirect-footer">
+          <span data-translate="no_account">Don't have an account?</span>
+          <a href="register.html" data-translate="link_register">Register Here</a>
+        </div>
+        
+      </div>
+    </div>
+  </main>
+
+  <!-- Interactive JavaScript logic -->
+  <script src="js/auth.js"></script>
+</body>
+</html>

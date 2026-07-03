@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student Academic Dashboard - MP Citizen Portal 2.0. Track state scholarships, counseling rounds, and CM internships.">
+  <title data-translate="portal_title">Student Academic Dashboard | MP Citizen Portal 2.0</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Modular CSS Imports -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dashboard-common.css">
+  <link rel="stylesheet" href="styles/student-dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- Background Slideshow -->
+  <div class="db-bg-slider">
+    <div class="db-bg-slide" style="background-image: url('assets/gwalior_fort.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/sanchi_stupa.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/wheat_fields.png');"></div>
+  </div>
+  <div class="db-bg-overlay"></div>
+  <div class="db-orbs-container">
+    <div class="db-orb orb-primary" style="background: #3b82f6;"></div>
+    <div class="db-orb orb-secondary" style="background: #06b6d4;"></div>
+  </div>
+  <div class="db-particles"></div>
+  
+  <!-- Floating Cap decorations (Waving Student cap visual) -->
+  <div class="student-bg-decorations">
+    <i class="fas fa-graduation-cap floating-cap cap-1"></i>
+    <i class="fas fa-book floating-cap cap-2"></i>
+    <i class="fas fa-user-graduate floating-cap cap-3"></i>
+  </div>
+
+  <div class="dashboard-wrapper">
+
+    <!-- Collapsible Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <div class="sidebar-brand">
+          <img src="assets/mp_logo.png" alt="MP emblem Logo" class="sidebar-emblem">
+          <div class="sidebar-brand-text">
+            <span class="sidebar-title" data-translate="auth_portal_title">MP Citizen Portal 2.0</span>
+            <span class="sidebar-subtitle">Student Center</span>
+          </div>
+        </div>
+
+        <nav class="sidebar-menu" aria-label="Student Navigation Menu">
+          <button class="sidebar-link active" data-target="overview">
+            <i class="fas fa-graduation-cap"></i>
+            <span class="sidebar-link-text" data-translate="nav_overview">Academic Hub</span>
+          </button>
+          <button class="sidebar-link" data-target="dte">
+            <i class="fas fa-calendar-days"></i>
+            <span class="sidebar-link-text" data-translate="nav_dte">MPDTE Center</span>
+          </button>
+          <button class="sidebar-link" data-target="mptaas">
+            <i class="fas fa-award"></i>
+            <span class="sidebar-link-text" data-translate="nav_mptaas">MPTAAS Portal</span>
+          </button>
+          <button class="sidebar-link" data-target="locker">
+            <i class="fas fa-folder-open"></i>
+            <span class="sidebar-link-text" data-translate="nav_locker">DigiLocker Docs</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-avatar" style="background: #3b82f6;">RK</div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name">Rajesh Kumar</span>
+          <span class="sidebar-user-role" data-translate="lbl_verified">Student Profile Verified</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <div class="main-content">
+      
+      <!-- Header -->
+      <header class="db-header">
+        <div class="db-header-left">
+          <button class="btn-sidebar-toggle" id="sidebar-toggle-btn" aria-label="Toggle Sidebar Menu">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h1 class="brand-title" id="header-view-title" style="font-size: 1.25rem;" data-translate="view_overview">Academic Hub</h1>
+        </div>
+
+        <div class="db-header-right">
+          <button class="btn-lang" id="lang-toggle-btn">हिन्दी</button>
+          <button class="btn-toggle" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+            <i class="fas fa-sun"></i>
+          </button>
+          <a href="index.html" class="header-profile-menu">
+            <div class="sidebar-avatar" style="width:36px; height:36px; background:#3b82f6;">RK</div>
+          </a>
+        </div>
+      </header>
+
+      <!-- Central View Screens -->
+      <main class="db-container">
+
+        <!-- Tab 1: OVERVIEW -->
+        <section id="overview-section" class="db-section active">
+          
+          <div class="db-welcome-card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);">
+            <div class="db-welcome-left">
+              <div class="db-welcome-avatar" style="background:#3b82f6;">RK</div>
+              <div class="db-welcome-text">
+                <h2 data-translate="welcome_greeting">Welcome, Rajesh Kumar</h2>
+                <p data-translate="welcome_desc">Track your exams enrollment, state scholarships status, and apply for upcoming internship opportunities.</p>
+                <div class="db-verification-badges">
+                  <span class="verification-badge"><i class="fas fa-circle-check"></i> MPDTE Profile Certified</span>
+                  <span class="verification-badge"><i class="fas fa-shield-halved"></i> MPTAAS e-KYC Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="db-welcome-right">
+              <div class="citizen-id-box">
+                <div class="citizen-id-lbl" data-translate="lbl_citizen_id">Enrollment ID</div>
+                <div class="citizen-id-val">MP-ENR-450912</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="db-stats-grid">
+            <div class="db-stat-card db-glass-card hover-lift">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_submitted">Exam Forms</span>
+                <span class="stat-card-number">1</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(59, 130, 246, 0.15); color:#3b82f6;"><i class="fas fa-file-signature"></i></div>
+            </div>
+            
+            <div class="db-stat-card db-glass-card hover-lift approved">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_approved">Active Schemes</span>
+                <span class="stat-card-number">3</span>
+              </div>
+              <div class="stat-card-icon-wrapper"><i class="fas fa-award"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift review">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_review">GPA Score</span>
+                <span class="stat-card-number">8.9</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(6, 182, 212, 0.15); color:#06b6d4;"><i class="fas fa-chart-line"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift alert">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_action">Action Required</span>
+                <span class="stat-card-number">0</span>
+              </div>
+              <div class="stat-card-icon-wrapper"><i class="fas fa-check-double"></i></div>
+            </div>
+          </div>
+
+          <!-- Graphs -->
+          <div class="db-charts-grid">
+            <div class="db-glass-card chart-card-col-8">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_line_title">Academic SGPA Progression</h3>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="gpaTrendChart"></canvas>
+              </div>
+            </div>
+
+            <div class="db-glass-card chart-card-col-4">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_pie_title">Curriculum Hours</h3>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="curriculumChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower Details grid -->
+          <div class="db-bottom-grid">
+            
+            <!-- Exam results CGPA -->
+            <div class="db-glass-card activity-card-col-7">
+              <h3 class="db-chart-title" data-translate="lbl_exam_results">Semester Grade Sheets (CGPA Log)</h3>
+              <table class="student-results-table">
+                <thead>
+                  <tr>
+                    <th>Semester</th>
+                    <th>CGPA</th>
+                    <th>Credits Completed</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Semester 1</td>
+                    <td><span class="grade-badge b-grade">7.8 SGPA</span></td>
+                    <td>24 Credits</td>
+                    <td>Released</td>
+                  </tr>
+                  <tr>
+                    <td>Semester 2</td>
+                    <td><span class="grade-badge">8.2 SGPA</span></td>
+                    <td>24 Credits</td>
+                    <td>Released</td>
+                  </tr>
+                  <tr>
+                    <td>Semester 3</td>
+                    <td><span class="grade-badge b-grade">8.0 SGPA</span></td>
+                    <td>22 Credits</td>
+                    <td>Released</td>
+                  </tr>
+                  <tr>
+                    <td>Semester 4</td>
+                    <td><span class="grade-badge">8.5 SGPA</span></td>
+                    <td>24 Credits</td>
+                    <td>Released</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Internship & Career guidance columns -->
+            <div class="activity-card-col-5" style="display: flex; flex-direction: column; gap: 1.5rem;">
+              
+              <!-- Careers recommendations advice -->
+              <div class="db-glass-card">
+                <h3 class="db-chart-title" style="margin-bottom: 1rem;" data-translate="lbl_careers">AI Career Guidance Advice</h3>
+                <div class="career-guide-box">
+                  <div class="career-path-item">
+                    <i class="fas fa-laptop-code career-path-icon"></i>
+                    <div class="career-path-text">
+                      <h5 data-translate="career_title1">Cloud Solution Architect Associate</h5>
+                      <p data-translate="career_desc1">Based on your scores in Advanced Networks and Cloud Computing, this path is highly recommended.</p>
+                    </div>
+                  </div>
+                  <div class="career-path-item">
+                    <i class="fas fa-brain career-path-icon"></i>
+                    <div class="career-path-text">
+                      <h5 data-translate="career_title2">Data Science Research Internship</h5>
+                      <p data-translate="career_desc2">Aligned with your database management project milestones and Python semester credits.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CM Internship listings -->
+              <div class="db-glass-card">
+                <h3 class="db-chart-title" style="margin-bottom: 1rem;" data-translate="lbl_internships">CM Youth Internship Vacancies</h3>
+                <div class="internships-grid">
+                  <div class="intern-card db-glass-card">
+                    <div>
+                      <h4 class="intern-title">Data Analyst Intern</h4>
+                      <span class="intern-company">MPSEDC Bhopal</span>
+                    </div>
+                    <button class="btn-intern-apply" onclick="alert('Applied successfully!');" data-translate="btn_apply">Apply</button>
+                  </div>
+                  <div class="intern-card db-glass-card">
+                    <div>
+                      <h4 class="intern-title">Android Developer</h4>
+                      <span class="intern-company">MAP_IT Jabalpur</span>
+                    </div>
+                    <button class="btn-intern-apply" onclick="alert('Applied successfully!');" data-translate="btn_apply">Apply</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Tab 2: MPDTE CENTER -->
+        <section id="dte-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 1rem;" data-translate="nav_dte">MPDTE Counseling Center</h3>
+            
+            <div class="mptaas-status-container">
+              <div class="mptaas-step completed">
+                <div class="mptaas-dot">1</div>
+                <span class="mptaas-label">Registration</span>
+              </div>
+              <div class="mptaas-step completed">
+                <div class="mptaas-dot">2</div>
+                <span class="mptaas-label">Verification</span>
+              </div>
+              <div class="mptaas-step active">
+                <div class="mptaas-dot">3</div>
+                <span class="mptaas-label">Choice Filling</span>
+              </div>
+              <div class="mptaas-step pending">
+                <div class="mptaas-dot">4</div>
+                <span class="mptaas-label">Seat Allot</span>
+              </div>
+            </div>
+
+            <div style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); padding: 1.25rem; border-radius: var(--border-radius-sm); margin-top: 2rem;">
+              <h4 style="font-weight: 700; color:var(--text-primary); margin-bottom: 0.5rem;"><i class="fas fa-circle-info" style="color:var(--color-primary);"></i> Choice Filling opens on July 10, 2026</h4>
+              <p style="font-size: 0.85rem; color:var(--text-secondary); line-height: 1.4;">Based on your JEE Rank (34,902), we recommend prioritizing SGSITS Indore, IET-DAVV Indore, and JEC Jabalpur Computer Science modules during choices submission.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: MPTAAS SCHOLARSHIPS -->
+        <section id="mptaas-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 1rem;" data-translate="nav_mptaas">MPTAAS Scholarship Status</h3>
+
+            <div class="mptaas-status-container">
+              <div class="mptaas-step completed">
+                <div class="mptaas-dot"><i class="fas fa-check"></i></div>
+                <span class="mptaas-label">Profile e-KYC</span>
+              </div>
+              <div class="mptaas-step completed">
+                <div class="mptaas-dot"><i class="fas fa-check"></i></div>
+                <span class="mptaas-label">Institute Verify</span>
+              </div>
+              <div class="mptaas-step active">
+                <div class="mptaas-dot">3</div>
+                <span class="mptaas-label">District Sanction</span>
+              </div>
+              <div class="mptaas-step pending">
+                <div class="mptaas-dot">4</div>
+                <span class="mptaas-label">Fund Release</span>
+              </div>
+            </div>
+
+            <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); padding: 1.25rem; border-radius: var(--border-radius-sm); margin-top: 2rem;">
+              <h4 style="font-weight: 700; color:var(--text-primary); margin-bottom: 0.5rem;"><i class="fas fa-circle-check" style="color:var(--color-green);"></i> Academic Year 2025-26 Claim Sanctioned</h4>
+              <p style="font-size: 0.85rem; color:var(--text-secondary); line-height: 1.4;">The District Officer has sanctioned your post-matric scholarship claim of ₹24,000. Funds will be directly credited to your Aadhaar-linked Bank Account (DBT) upon final treasury release.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 4: DIGILOCKER INTEGRATION -->
+        <section id="locker-section" class="db-section">
+          <div class="db-glass-card" style="margin-bottom: 1.5rem;">
+            <h3 class="db-chart-title" style="margin-bottom: 0.35rem;" data-translate="nav_locker">DigiLocker Integration</h3>
+            <p class="auth-subtitle" style="margin-bottom: 0;">Access, view, and print digitally verified academic sheets directly pulled from DigiLocker archives.</p>
+          </div>
+
+          <div class="locker-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;">
+            <!-- Document 1: Class 10 Marksheet -->
+            <div class="doc-card db-glass-card pdf">
+              <div class="doc-card-top">
+                <div class="doc-icon-wrapper"><i class="fas fa-file-pdf"></i></div>
+              </div>
+              <div class="doc-details">
+                <h4 class="doc-name">Class_X_Marksheet.pdf</h4>
+                <div class="doc-meta"><span>320 KB</span><span>•</span><span>Verified</span></div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">MP Board Secondary Education</div>
+              </div>
+              <div class="doc-actions-bar">
+                <button class="btn-doc-action" onclick="alert('Viewing marksheet...');"><i class="fas fa-eye"></i> View</button>
+                <button class="btn-doc-action" onclick="alert('Downloading...');"><i class="fas fa-download"></i> Get</button>
+              </div>
+            </div>
+
+            <!-- Document 2: Class 12 Marksheet -->
+            <div class="doc-card db-glass-card pdf">
+              <div class="doc-card-top">
+                <div class="doc-icon-wrapper"><i class="fas fa-file-pdf"></i></div>
+              </div>
+              <div class="doc-details">
+                <h4 class="doc-name">Class_XII_Marksheet.pdf</h4>
+                <div class="doc-meta"><span>410 KB</span><span>•</span><span>Verified</span></div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">MP Board Secondary Education</div>
+              </div>
+              <div class="doc-actions-bar">
+                <button class="btn-doc-action" onclick="alert('Viewing marksheet...');"><i class="fas fa-eye"></i> View</button>
+                <button class="btn-doc-action" onclick="alert('Downloading...');"><i class="fas fa-download"></i> Get</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Chatbot Helper Assistant -->
+  <div class="db-floating-assistant">
+    <button class="btn-db-assistant-trigger" id="assistant-trigger" aria-label="Open helper bot">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="db-chatbot-window" id="chatbot-window">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+          <div class="chat-title-wrapper">
+            <h4>MP-AI Assistant</h4>
+            <span class="chat-status" style="color: #3b82f6;">Student Support</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" id="chat-close" aria-label="Close chatbot"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="chat-messages" id="chat-messages"></div>
+
+      <form class="chat-input-area" id="chat-input-form">
+        <input type="text" id="chat-message-input" placeholder="Type a message..." data-translate="chat_placeholder">
+        <button type="submit" class="chat-send-btn" style="background:#3b82f6;" aria-label="Submit chat message"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript controller -->
+  <script src="js/student-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kisan Agriculture Dashboard - MP Citizen Portal 2.0. Access crop insurance, Mandi quintal prices, and soil health metrics.">
+  <title data-translate="portal_title">Kisan Agriculture Dashboard | MP Citizen Portal 2.0</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Modular CSS Imports -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dashboard-common.css">
+  <link rel="stylesheet" href="styles/farmer-dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- Fullscreen Green Landscape Background Slider -->
+  <div class="db-bg-slider">
+    <div class="db-bg-slide" style="background-image: url('assets/wheat_fields.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/narmada_river.png');"></div>
+  </div>
+  <div class="db-bg-overlay"></div>
+  <div class="db-orbs-container">
+    <div class="db-orb orb-primary" style="background: #10b981;"></div>
+    <div class="db-orb orb-secondary" style="background: #059669;"></div>
+    <div class="db-orb orb-saffron" style="background: #f97316;"></div>
+  </div>
+  <div class="db-particles"></div>
+  
+  <!-- Waving Crop Stalks Visuals -->
+  <div class="farmer-crops-decorations">
+    <div class="crop-stalk stalk-1"><i class="fa-solid fa-wheat-awn"></i></div>
+    <div class="crop-stalk stalk-2"><i class="fa-solid fa-wheat-awn"></i></div>
+    <div class="crop-stalk stalk-3"><i class="fa-solid fa-wheat-awn"></i></div>
+    <div class="crop-stalk stalk-4"><i class="fa-solid fa-wheat-awn"></i></div>
+  </div>
+
+  <div class="dashboard-wrapper">
+
+    <!-- Collapsible Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <div class="sidebar-brand">
+          <img src="assets/mp_logo.png" alt="MP emblem Logo" class="sidebar-emblem">
+          <div class="sidebar-brand-text">
+            <span class="sidebar-title" data-translate="auth_portal_title">MP Citizen Portal 2.0</span>
+            <span class="sidebar-subtitle">Kisan Center</span>
+          </div>
+        </div>
+
+        <nav class="sidebar-menu" aria-label="Farmer Navigation Menu">
+          <button class="sidebar-link active" data-target="overview">
+            <i class="fas fa-tractor"></i>
+            <span class="sidebar-link-text" data-translate="nav_overview">Agriculture Hub</span>
+          </button>
+          <button class="sidebar-link" data-target="pmkisan">
+            <i class="fas fa-hand-holding-hand"></i>
+            <span class="sidebar-link-text" data-translate="nav_pmkisan">PM Kisan Status</span>
+          </button>
+          <button class="sidebar-link" data-target="soil">
+            <i class="fas fa-seedling"></i>
+            <span class="sidebar-link-text" data-translate="nav_soil">Soil Health</span>
+          </button>
+          <button class="sidebar-link" data-target="news">
+            <i class="fas fa-newspaper"></i>
+            <span class="sidebar-link-text" data-translate="nav_news">Agri News</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-avatar" style="background: #10b981;">RK</div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name">Rajesh Kumar</span>
+          <span class="sidebar-user-role" data-translate="lbl_verified">Farmer Profile Verified</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <div class="main-content">
+      
+      <!-- Header -->
+      <header class="db-header">
+        <div class="db-header-left">
+          <button class="btn-sidebar-toggle" id="sidebar-toggle-btn" aria-label="Toggle Sidebar Menu">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h1 class="brand-title" id="header-view-title" style="font-size: 1.25rem;" data-translate="view_overview">Agriculture Hub</h1>
+        </div>
+
+        <div class="db-header-right">
+          <button class="btn-lang" id="lang-toggle-btn">हिन्दी</button>
+          <button class="btn-toggle" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+            <i class="fas fa-sun"></i>
+          </button>
+          <a href="index.html" class="header-profile-menu">
+            <div class="sidebar-avatar" style="width:36px; height:36px; background:#10b981;">RK</div>
+          </a>
+        </div>
+      </header>
+
+      <!-- Central View Screens -->
+      <main class="db-container">
+
+        <!-- Tab 1: OVERVIEW -->
+        <section id="overview-section" class="db-section active">
+          
+          <div class="db-welcome-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);">
+            <div class="db-welcome-left">
+              <div class="db-welcome-avatar" style="background:#10b981;">RK</div>
+              <div class="db-welcome-text">
+                <h2 data-translate="welcome_greeting">Namaste, Rajesh Kumar</h2>
+                <p data-translate="welcome_desc">Access your crop subsidies, check Mandi market prices, claim crop insurance, and get AI-weather advisories.</p>
+                <div class="db-verification-badges">
+                  <span class="verification-badge"><i class="fas fa-circle-check"></i> Soil Report Uploaded</span>
+                  <span class="verification-badge"><i class="fas fa-shield-halved"></i> e-Uparjan Registered</span>
+                </div>
+              </div>
+            </div>
+            <div class="db-welcome-right">
+              <div class="citizen-id-box">
+                <div class="citizen-id-lbl" data-translate="lbl_citizen_id">Kisan Credit Card ID</div>
+                <div class="citizen-id-val">KCC-IND-928954</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kisan Voice Assistant -->
+          <div class="voice-ass-widget">
+            <div class="voice-ass-left">
+              <button class="voice-mic-btn" id="voice-mic-btn" aria-label="Activate Voice Mic"><i class="fas fa-microphone"></i></button>
+              <div class="voice-ass-text">
+                <span class="voice-ass-title" data-translate="voice_title">Kisan Voice Assistant</span>
+                <span class="voice-ass-transcript" id="voice-transcript" data-translate="voice_prompt">Click mic and say: 'weather', 'soyabean price', or 'crop insurance'</span>
+                <span class="voice-ass-reply" id="voice-reply"></span>
+              </div>
+            </div>
+            <i class="fas fa-wand-magic-sparkles" style="font-size: 1.5rem; color:var(--color-primary); opacity: 0.8;"></i>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="db-stats-grid">
+            <div class="db-stat-card db-glass-card hover-lift">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_submitted">Subsidy Claims</span>
+                <span class="stat-card-number">2</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(16, 185, 129, 0.15); color:#10b981;"><i class="fas fa-seedling"></i></div>
+            </div>
+            
+            <div class="db-stat-card db-glass-card hover-lift approved">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_approved">Sanctioned Loans</span>
+                <span class="stat-card-number">₹1.5L</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(16, 185, 129, 0.15); color:#10b981;"><i class="fas fa-hand-holding-dollar"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift review">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_review">Soil Health pH</span>
+                <span class="stat-card-number">6.8</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(6, 182, 212, 0.15); color:#06b6d4;"><i class="fas fa-flask"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift alert">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_action">Action Required</span>
+                <span class="stat-card-number" style="color:#ef4444;">1</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(239, 68, 68, 0.15); color:#ef4444;"><i class="fas fa-triangle-exclamation"></i></div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="db-charts-grid">
+            <div class="db-glass-card chart-card-col-8">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_line_title">Soyabean Price Fluctuation (6 Months in ₹/Quintal)</h3>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="priceTrendChart"></canvas>
+              </div>
+            </div>
+
+            <div class="db-glass-card chart-card-col-4">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_pie_title">Crop Sowing Distribution</h3>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="cropDistChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower Details grid -->
+          <div class="db-bottom-grid">
+            
+            <!-- Mandi Rates List -->
+            <div class="db-glass-card activity-card-col-7">
+              <h3 class="db-chart-title" style="margin-bottom: 1.25rem;" data-translate="lbl_mandi_prices">Mandi Quintal Rates (Live)</h3>
+              <div class="mandi-list">
+                <div class="mandi-item">
+                  <div class="mandi-crop-info">
+                    <span class="mandi-crop-name">Soyabean (सोयाबीन)</span>
+                    <span class="mandi-name">Indore Mandi</span>
+                  </div>
+                  <div class="mandi-price-box">
+                    <span class="mandi-price-val">₹4,800</span>
+                    <div class="mandi-price-trend"><i class="fas fa-circle-arrow-up"></i> +₹50</div>
+                  </div>
+                </div>
+                <div class="mandi-item">
+                  <div class="mandi-crop-info">
+                    <span class="mandi-crop-name">Wheat (गेहूं)</span>
+                    <span class="mandi-name">Bhopal Mandi</span>
+                  </div>
+                  <div class="mandi-price-box">
+                    <span class="mandi-price-val">₹2,450</span>
+                    <div class="mandi-price-trend"><i class="fas fa-circle-arrow-up"></i> +₹20</div>
+                  </div>
+                </div>
+                <div class="mandi-item">
+                  <div class="mandi-crop-info">
+                    <span class="mandi-crop-name">Gram (चना)</span>
+                    <span class="mandi-name">Jabalpur Mandi</span>
+                  </div>
+                  <div class="mandi-price-box">
+                    <span class="mandi-price-val">₹5,200</span>
+                    <div class="mandi-price-trend down"><i class="fas fa-circle-arrow-down"></i> -₹30</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weather & Climate info card -->
+            <div class="db-glass-card activity-card-col-5">
+              <h3 class="db-chart-title" style="margin-bottom: 1.25rem;" data-translate="lbl_weather">Weather Advisory & Climate</h3>
+              
+              <div class="weather-advisory-card">
+                <div class="weather-header-row">
+                  <div>
+                    <h4 style="font-size: 1.15rem; font-weight:700;">Indore City</h4>
+                    <span style="font-size: 0.8rem; color:var(--text-muted);">Clear Skies</span>
+                  </div>
+                  <span class="weather-temp">32°C</span>
+                </div>
+                
+                <div class="weather-adv-text">
+                  <strong>Malwa Crop Advisory:</strong> Weather is forecast to remain dry for next 5 days. It is recommended to complete the weeding and apply Nitrogen fertilizer to Soyabean crops. Maintain soil moisture levels.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Tab 2: PM KISAN STATUS -->
+        <section id="pmkisan-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 1.25rem;" data-translate="nav_pmkisan">PM Kisan Samman Nidhi</h3>
+            
+            <!-- Timeline steps -->
+            <div class="vertical-timeline" style="margin-left: 1rem;">
+              <div class="timeline-node completed">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content">
+                  <h5 class="timeline-stage-title">15th Installment Released</h5>
+                  <p class="timeline-stage-desc">Direct Benefit Transfer successfully processed.</p>
+                  <span class="timeline-stage-time">₹2,000 Credited on Nov 15, 2025</span>
+                </div>
+              </div>
+              <div class="timeline-node completed">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content">
+                  <h5 class="timeline-stage-title">16th Installment Released</h5>
+                  <p class="timeline-stage-desc">Direct Benefit Transfer successfully processed.</p>
+                  <span class="timeline-stage-time">₹2,000 Credited on Mar 05, 2026</span>
+                </div>
+              </div>
+              <div class="timeline-node active">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content">
+                  <h5 class="timeline-stage-title">17th Installment Verification</h5>
+                  <p class="timeline-stage-desc">Account audits completed. Disbursement in treasury queue.</p>
+                  <span class="timeline-stage-time">Estimated Credit: July 25, 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: SOIL HEALTH -->
+        <section id="soil-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 0.35rem;" data-translate="lbl_soil_report">Soil Mineral Health Analysis</h3>
+            <p style="font-size: 0.85rem; color:var(--text-muted); margin-bottom: 1.5rem;">Verified soil nutrients parameters based on Soil Health Card No: MP-IND-9032.</p>
+            
+            <div class="soil-grid">
+              
+              <!-- Nitrogen (Deficient) -->
+              <div class="soil-metric-box">
+                <div class="soil-ring-wrapper">
+                  <svg class="soil-ring-svg" viewBox="0 0 64 64">
+                    <circle class="soil-ring-bg" cx="32" cy="32" r="28"></circle>
+                    <circle class="soil-ring-progress" style="stroke: #f97316; stroke-dashoffset: 120;" cx="32" cy="32" r="28"></circle>
+                  </svg>
+                  <span class="soil-ring-val">35%</span>
+                </div>
+                <span class="soil-lbl">Nitrogen (N)</span>
+                <span style="font-size: 0.7rem; font-weight:700; color:#f97316;">DEFICIENT (कम)</span>
+              </div>
+
+              <!-- Phosphorus (Good) -->
+              <div class="soil-metric-box">
+                <div class="soil-ring-wrapper">
+                  <svg class="soil-ring-svg" viewBox="0 0 64 64">
+                    <circle class="soil-ring-bg" cx="32" cy="32" r="28"></circle>
+                    <circle class="soil-ring-progress" style="stroke-dashoffset: 52;" cx="32" cy="32" r="28"></circle>
+                  </svg>
+                  <span class="soil-ring-val">70%</span>
+                </div>
+                <span class="soil-lbl">Phosphorus (P)</span>
+                <span style="font-size: 0.7rem; font-weight:700; color:var(--color-green);">SUFFICIENT (अच्छा)</span>
+              </div>
+
+              <!-- Potassium (Good) -->
+              <div class="soil-metric-box">
+                <div class="soil-ring-wrapper">
+                  <svg class="soil-ring-svg" viewBox="0 0 64 64">
+                    <circle class="soil-ring-bg" cx="32" cy="32" r="28"></circle>
+                    <circle class="soil-ring-progress" style="stroke-dashoffset: 44;" cx="32" cy="32" r="28"></circle>
+                  </svg>
+                  <span class="soil-ring-val">75%</span>
+                </div>
+                <span class="soil-lbl">Potassium (K)</span>
+                <span style="font-size: 0.7rem; font-weight:700; color:var(--color-green);">SUFFICIENT (अच्छा)</span>
+              </div>
+
+            </div>
+
+            <div style="background: rgba(249, 115, 22, 0.05); border: 1px solid rgba(249, 115, 22, 0.2); padding: 1.25rem; border-radius: var(--border-radius-sm); margin-top: 2rem;">
+              <h4 style="font-weight: 700; color:var(--text-primary); margin-bottom: 0.5rem;"><i class="fas fa-circle-info" style="color:#f97316;"></i> Fertilizer Advisory: Deficient Nitrogen</h4>
+              <p style="font-size: 0.85rem; color:var(--text-secondary); line-height: 1.4;">Based on Nitrogen deficit, we recommend applying 25 kg Urea fertilizer per acre to your Soyabean crop during the vegetative stage to improve grain yield.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 4: AGRI NEWS -->
+        <section id="news-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 1.25rem;" data-translate="lbl_agri_news">MP Agriculture News Bulletins</h3>
+            
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="activity-dot green"></div>
+                  <div class="activity-content">
+                    <span class="activity-text" style="font-weight: 600;">Government increases minimum support price (MSP) for Wheat by ₹150/quintal.</span>
+                    <span class="activity-time">Published: June 28, 2026</span>
+                  </div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="activity-dot"></div>
+                  <div class="activity-content">
+                    <span class="activity-text" style="font-weight: 600;">Registration for Crop Procurement on e-Uparjan portal is open till July 31.</span>
+                    <span class="activity-time">Published: June 26, 2026</span>
+                  </div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="activity-dot"></div>
+                  <div class="activity-content">
+                    <span class="activity-text" style="font-weight: 600;">Subsidy sanction issued for 10,000 new agricultural solar pump installations.</span>
+                    <span class="activity-time">Published: June 22, 2026</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Chatbot Helper Assistant -->
+  <div class="db-floating-assistant">
+    <button class="btn-db-assistant-trigger" id="assistant-trigger" style="background:linear-gradient(135deg, #10b981, #059669);" aria-label="Open assistant chatbot">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="db-chatbot-window" id="chatbot-window">
+      <div class="chat-header" style="background: rgba(16, 185, 129, 0.15);">
+        <div class="chat-header-info">
+          <div class="chat-avatar" style="background:linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-robot"></i></div>
+          <div class="chat-title-wrapper">
+            <h4>MP-AI Assistant</h4>
+            <span class="chat-status" style="color: #10b981;">Kisan Support</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" id="chat-close" aria-label="Close chatbot"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="chat-messages" id="chat-messages"></div>
+
+      <form class="chat-input-area" id="chat-input-form">
+        <input type="text" id="chat-message-input" placeholder="Type a message..." data-translate="chat_placeholder">
+        <button type="submit" class="chat-send-btn" style="background:#10b981;" aria-label="Submit message"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript controller -->
+  <script src="js/farmer-dashboard.js"></script>
+</body>
+</html>

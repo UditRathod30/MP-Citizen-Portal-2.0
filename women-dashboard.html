@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Women Empowerment Dashboard - MP Citizen Portal 2.0. Track Ladli Behna payouts, self-help groups, and skill courses.">
+  <title data-translate="portal_title">Women Empowerment Dashboard | MP Citizen Portal 2.0</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Modular CSS Imports -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dashboard-common.css">
+  <link rel="stylesheet" href="styles/women-dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- Fullscreen Elegant Background Slider -->
+  <div class="db-bg-slider">
+    <div class="db-bg-slide" style="background-image: url('assets/narmada_river.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/wheat_fields.png');"></div>
+  </div>
+  <div class="db-bg-overlay"></div>
+  <div class="db-orbs-container">
+    <div class="db-orb orb-primary" style="background: #ec4899;"></div>
+    <div class="db-orb orb-secondary" style="background: #d946ef;"></div>
+  </div>
+  <div class="db-particles"></div>
+  
+  <!-- Floral/Empowerment Motif Visual Decorations -->
+  <div class="women-bg-decorations">
+    <i class="fas fa-venus floating-motif motif-1"></i>
+    <i class="fas fa-seedling floating-motif motif-2"></i>
+  </div>
+
+  <div class="dashboard-wrapper">
+
+    <!-- Collapsible Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <div class="sidebar-brand">
+          <img src="assets/mp_logo.png" alt="MP emblem Logo" class="sidebar-emblem">
+          <div class="sidebar-brand-text">
+            <span class="sidebar-title" data-translate="auth_portal_title">MP Citizen Portal 2.0</span>
+            <span class="sidebar-subtitle">Empowerment Center</span>
+          </div>
+        </div>
+
+        <nav class="sidebar-menu" aria-label="Women Navigation Menu">
+          <button class="sidebar-link active" data-target="overview">
+            <i class="fas fa-user-tie"></i>
+            <span class="sidebar-link-text" data-translate="nav_overview">Empowerment Hub</span>
+          </button>
+          <button class="sidebar-link" data-target="behna">
+            <i class="fas fa-house-chimney-heart"></i>
+            <span class="sidebar-link-text" data-translate="nav_behna">Ladli Behna</span>
+          </button>
+          <button class="sidebar-link" data-target="shg">
+            <i class="fas fa-users-rectangle"></i>
+            <span class="sidebar-link-text" data-translate="nav_shg">Self Help Groups</span>
+          </button>
+          <button class="sidebar-link" data-target="health">
+            <i class="fas fa-heart-pulse"></i>
+            <span class="sidebar-link-text" data-translate="nav_health">Women Health</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-avatar" style="background: #ec4899;">RB</div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name">Rajeshwari Bai</span>
+          <span class="sidebar-user-role" data-translate="lbl_verified">Profile Verified</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <div class="main-content">
+      
+      <!-- Header -->
+      <header class="db-header">
+        <div class="db-header-left">
+          <button class="btn-sidebar-toggle" id="sidebar-toggle-btn" aria-label="Toggle Sidebar Menu">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h1 class="brand-title" id="header-view-title" style="font-size: 1.25rem;" data-translate="view_overview">Empowerment Hub</h1>
+        </div>
+
+        <div class="db-header-right">
+          <button class="btn-lang" id="lang-toggle-btn">हिन्दी</button>
+          <button class="btn-toggle" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+            <i class="fas fa-sun"></i>
+          </button>
+          <a href="index.html" class="header-profile-menu">
+            <div class="sidebar-avatar" style="width:36px; height:36px; background:#ec4899;">RB</div>
+          </a>
+        </div>
+      </header>
+
+      <!-- Central View Screens -->
+      <main class="db-container">
+
+        <!-- Tab 1: OVERVIEW -->
+        <section id="overview-section" class="db-section active">
+          
+          <div class="db-welcome-card" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);">
+            <div class="db-welcome-left">
+              <div class="db-welcome-avatar" style="background:#ec4899;">RB</div>
+              <div class="db-welcome-text">
+                <h2 data-translate="welcome_greeting">Namaste, Rajeshwari Bai</h2>
+                <p data-translate="welcome_desc">Monitor your monthly Ladli Behna payouts, manage Self Help Group accounts, and enroll in vocational skills courses.</p>
+                <div class="db-verification-badges">
+                  <span class="verification-badge"><i class="fas fa-circle-check"></i> Aadhaar DBT Linked</span>
+                  <span class="verification-badge"><i class="fas fa-shield-halved"></i> Samagra Verified</span>
+                </div>
+              </div>
+            </div>
+            <div class="db-welcome-right">
+              <div class="citizen-id-box">
+                <div class="citizen-id-lbl" data-translate="lbl_citizen_id">Samagra Member ID</div>
+                <div class="citizen-id-val">MP-SMG-809312</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="db-stats-grid">
+            <div class="db-stat-card db-glass-card hover-lift">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_submitted">Monthly Payout</span>
+                <span class="stat-card-number">₹1,250</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(236, 72, 153, 0.15); color:#ec4899;"><i class="fas fa-house-chimney-heart"></i></div>
+            </div>
+            
+            <div class="db-stat-card db-glass-card hover-lift approved">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_approved">SHG Balance</span>
+                <span class="stat-card-number">₹42.5K</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(236, 72, 153, 0.15); color:#ec4899;"><i class="fas fa-vault"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift review">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_review">Skill Courses</span>
+                <span class="stat-card-number">2</span>
+              </div>
+              <div class="stat-card-icon-wrapper" style="background:rgba(217, 70, 239, 0.15); color:#d946ef;"><i class="fas fa-user-graduate"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift alert">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_action">Action Required</span>
+                <span class="stat-card-number">0</span>
+              </div>
+              <div class="stat-card-icon-wrapper"><i class="fas fa-check-double"></i></div>
+            </div>
+          </div>
+
+          <!-- Graphs -->
+          <div class="db-charts-grid">
+            <div class="db-glass-card chart-card-col-8">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_line_title">SHG Mutual Savings Growth (6 Months in ₹)</h3>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="savingsGrowthChart"></canvas>
+              </div>
+            </div>
+
+            <div class="db-glass-card chart-card-col-4">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_pie_title">Skill Course Enrollment</h3>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="courseEnrollmentChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower Details grid -->
+          <div class="db-bottom-grid">
+            
+            <!-- Free Vocational skills courses -->
+            <div class="db-glass-card activity-card-col-7">
+              <h3 class="db-chart-title" style="margin-bottom: 1.25rem;" data-translate="lbl_courses">Free Vocational Courses (Skill Development)</h3>
+              <div class="courses-grid">
+                <div class="course-card db-glass-card">
+                  <div class="course-info">
+                    <span class="course-title">Tailoring & Apparel Design (सिलाई एवं सिलाई कला)</span>
+                    <span class="course-meta">Starts: July 15, 2026 • 3 Months Course</span>
+                  </div>
+                  <button class="btn-course-enroll" onclick="alert('Enrolled successfully!');" data-translate="btn_enroll">Enroll</button>
+                </div>
+                <div class="course-card db-glass-card">
+                  <div class="course-info">
+                    <span class="course-title">Computer Basics & Digital Literacy (कंप्यूटर साक्षरता)</span>
+                    <span class="course-meta">Starts: July 18, 2026 • 2 Months Course</span>
+                  </div>
+                  <button class="btn-course-enroll" onclick="alert('Enrolled successfully!');" data-translate="btn_enroll">Enroll</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Health checkups lists -->
+            <div class="db-glass-card activity-card-col-5">
+              <h3 class="db-chart-title" style="margin-bottom: 1.25rem;" data-translate="lbl_health">Pregnancy & General Health Checks</h3>
+              <div class="health-metrics-list">
+                <div class="health-item">
+                  <div class="health-name-col">
+                    <i class="fas fa-user-nurse health-item-icon"></i>
+                    <span class="health-name" data-translate="h_item1">Asha Health Inspection</span>
+                  </div>
+                  <span class="health-status-badge">Regular</span>
+                </div>
+                <div class="health-item">
+                  <div class="health-name-col">
+                    <i class="fas fa-file-invoice-dollar health-item-icon"></i>
+                    <span class="health-name" data-translate="h_item2">Maternity Scheme Eligibility</span>
+                  </div>
+                  <span class="health-status-badge">Qualified</span>
+                </div>
+                <div class="health-item">
+                  <div class="health-name-col">
+                    <i class="fas fa-droplet health-item-icon"></i>
+                    <span class="health-name" data-translate="h_item3">Hemoglobin & Iron Check</span>
+                  </div>
+                  <span class="health-status-val">12.4 g/dl (Normal)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Tab 2: LADLI BEHNA -->
+        <section id="behna-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 1.25rem;">Ladli Behna Yojana Payout Timeline</h3>
+            
+            <div class="vertical-timeline" style="margin-left: 1rem;">
+              <div class="timeline-node completed">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content">
+                  <h5 class="timeline-stage-title">May Installment Credited</h5>
+                  <p class="timeline-stage-desc">DBT transfer credited to bank account.</p>
+                  <span class="timeline-stage-time">₹1,250 Credited on May 10, 2026</span>
+                </div>
+              </div>
+              <div class="timeline-node completed">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content">
+                  <h5 class="timeline-stage-title">June Installment Credited</h5>
+                  <p class="timeline-stage-desc">DBT transfer credited to bank account.</p>
+                  <span class="timeline-stage-time">₹1,250 Credited on June 10, 2026</span>
+                </div>
+              </div>
+              <div class="timeline-node active">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content">
+                  <h5 class="timeline-stage-title">July Installment Dispatched</h5>
+                  <p class="timeline-stage-desc">Fund sanction order processed. Awaiting bank clearance.</p>
+                  <span class="timeline-stage-time">Estimated Credit: July 10, 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: SELF HELP GROUPS -->
+        <section id="shg-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 0.35rem;" data-translate="lbl_shg">Self Help Group Accounts (Narmada Sangathan)</h3>
+            <p style="font-size: 0.85rem; color:var(--text-muted); margin-bottom: 1.5rem;">Mutual savings account records for SHG Registration Code: MP-SHG-1243.</p>
+            
+            <div class="shg-grid">
+              <div class="shg-info-card">
+                <span class="shg-lbl">Collective Savings</span>
+                <span class="shg-val">₹42,500</span>
+                <span class="shg-change"><i class="fas fa-arrow-trend-up"></i> +₹2,500 this month</span>
+              </div>
+              <div class="shg-info-card">
+                <span class="shg-lbl">Your Contribution</span>
+                <span class="shg-val">₹3,200</span>
+                <span class="shg-change"><i class="fas fa-circle-check"></i> Paid for July</span>
+              </div>
+              <div class="shg-info-card">
+                <span class="shg-lbl">Internal Loan Limit</span>
+                <span class="shg-val">₹15,000</span>
+                <span class="shg-change" style="color:var(--color-primary);">Interest: 1% simple</span>
+              </div>
+            </div>
+
+            <div style="background: rgba(236, 72, 153, 0.05); border: 1px solid rgba(236, 72, 153, 0.2); padding: 1.25rem; border-radius: var(--border-radius-sm); margin-top: 2rem;">
+              <h4 style="font-weight: 700; color:var(--text-primary); margin-bottom: 0.5rem;"><i class="fas fa-calendar" style="color:var(--color-primary);"></i> Next SHG Meeting: July 12, 2026</h4>
+              <p style="font-size: 0.85rem; color:var(--text-secondary); line-height: 1.4;">The monthly credit meeting of Narmada Mahila Sangathan will take place at the Panchayat Bhawan at 02:00 PM. Please bring your savings passbook.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 4: WOMEN HEALTH -->
+        <section id="health-section" class="db-section">
+          <div class="db-glass-card">
+            <h3 class="db-chart-title" style="margin-bottom: 1.25rem;" data-translate="nav_health">Women Health Center</h3>
+            
+            <div class="health-metrics-list">
+              <div class="health-item">
+                <div class="health-name-col">
+                  <i class="fas fa-circle-check" style="color:var(--color-green);"></i>
+                  <span class="health-name">Asha Health Immunization Record</span>
+                </div>
+                <span class="health-status-badge">Completed</span>
+              </div>
+              <div class="health-item">
+                <div class="health-name-col">
+                  <i class="fas fa-circle-check" style="color:var(--color-green);"></i>
+                  <span class="health-name">Maternity Benefit (PMMVY Scheme)</span>
+                </div>
+                <span class="health-status-badge">1st Installment Paid</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Chatbot Helper Assistant -->
+  <div class="db-floating-assistant">
+    <button class="btn-db-assistant-trigger" id="assistant-trigger" style="background:linear-gradient(135deg, #ec4899, #db2777);" aria-label="Open assistant chatbot">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="db-chatbot-window" id="chatbot-window">
+      <div class="chat-header" style="background: rgba(236, 72, 153, 0.15);">
+        <div class="chat-header-info">
+          <div class="chat-avatar" style="background:linear-gradient(135deg, #ec4899, #db2777);"><i class="fas fa-robot"></i></div>
+          <div class="chat-title-wrapper">
+            <h4>MP-AI Assistant</h4>
+            <span class="chat-status" style="color: #ec4899;">Women Helpline</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" id="chat-close" aria-label="Close chatbot"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="chat-messages" id="chat-messages"></div>
+
+      <form class="chat-input-area" id="chat-input-form">
+        <input type="text" id="chat-message-input" placeholder="Type a message..." data-translate="chat_placeholder">
+        <button type="submit" class="chat-send-btn" style="background:#ec4899;" aria-label="Submit message"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript controller -->
+  <script src="js/women-dashboard.js"></script>
+</body>
+</html>

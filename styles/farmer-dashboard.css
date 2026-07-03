@@ -1,0 +1,288 @@
+/* 
+ * MP Citizen Portal 2.0 - Farmer Dashboard Styles
+ * Author: Senior UI/UX Designer & Frontend Architect
+ */
+
+:root {
+  /* Override Brand Accents to Forest Green */
+  --color-primary: #10b981;
+  --color-primary-hover: #059669;
+  --color-secondary: #06b6d4;
+  --border-glow: rgba(16, 185, 129, 0.2);
+}
+
+/* --- Waving Crops Background Animation --- */
+.farmer-crops-decorations {
+  position: fixed;
+  bottom: 0;
+  right: 5%;
+  height: 120px;
+  width: 300px;
+  z-index: -1;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-around;
+  opacity: 0.22;
+}
+
+[data-theme="light"] .farmer-crops-decorations {
+  opacity: 0.1;
+}
+
+.crop-stalk {
+  color: var(--color-primary);
+  font-size: 2.75rem;
+  transform-origin: bottom center;
+  animation: waveCrops 4s ease-in-out infinite alternate;
+}
+
+.stalk-2 { animation-delay: -1s; font-size: 2.25rem; }
+.stalk-3 { animation-delay: -2s; font-size: 2.5rem; }
+.stalk-4 { animation-delay: -3s; font-size: 2rem; }
+
+@keyframes waveCrops {
+  0% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+/* --- Soil Health Card Circular Indicators --- */
+.soil-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.soil-metric-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-theme="light"] .soil-metric-box {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.soil-ring-wrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.soil-ring-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.soil-ring-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 4;
+}
+
+.soil-ring-progress {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 176;
+  stroke-dashoffset: 44; /* Calculates to ~75% */
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.soil-ring-val {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.soil-lbl {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* --- Mandi prices list --- */
+.mandi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mandi-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+}
+
+.mandi-crop-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.mandi-crop-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mandi-name {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mandi-price-box {
+  text-align: right;
+}
+
+.mandi-price-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.mandi-price-trend {
+  font-size: 0.7rem;
+  color: var(--color-green);
+  font-weight: 600;
+}
+
+.mandi-price-trend.down {
+  color: #ef4444;
+}
+
+/* --- Voice Assistant Inline Widget --- */
+.voice-ass-widget {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.voice-ass-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.voice-mic-btn {
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  cursor: pointer;
+  border: 4px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: var(--transition-smooth);
+}
+
+.voice-mic-btn.listening {
+  animation: voiceMicPulse 1.2s infinite ease-in-out alternate;
+  background: #ef4444;
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+@keyframes voiceMicPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+  100% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+
+.voice-ass-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.voice-ass-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.voice-ass-transcript {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  min-height: 1.2rem;
+}
+
+.voice-ass-reply {
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* --- Weather Advisory Card --- */
+.weather-advisory-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.weather-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weather-temp {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.weather-adv-text {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75rem;
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--color-primary);
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-width: 576px) {
+  .voice-ass-widget {
+    flex-direction: column;
+    text-align: center;
+  }
+  .voice-ass-left {
+    flex-direction: column;
+  }
+  .soil-grid {
+    grid-template-columns: 1fr;
+  }
+}

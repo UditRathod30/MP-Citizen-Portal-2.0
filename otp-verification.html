@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OTP Verification - MP Citizen Portal 2.0. Complete your session validation using secure one-time passcode.">
+  <title data-translate="otp_title">OTP Verification | MP Citizen Portal 2.0</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core Design System & Auth Custom Styles -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body>
+
+  <!-- Clean Auth Header -->
+  <header class="auth-header" id="auth-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand" aria-label="MP Citizen Portal Home">
+        <img src="assets/mp_logo.png" alt="Government of Madhya Pradesh Emblem" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title" data-translate="auth_portal_title">MP Citizen Portal 2.0</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- Return Home Button -->
+        <a href="index.html" class="btn-back-home" data-translate="btn_back_home">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <!-- Language Switcher -->
+        <button class="btn-lang" id="lang-toggle-btn">हिन्दी</button>
+        
+        <!-- Dark/Light Mode Switcher -->
+        <button class="btn-toggle" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Heritage Slideshow Background -->
+  <div class="auth-bg-slider">
+    <div class="auth-bg-slide" style="background-image: url('assets/sanchi_stupa.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/khajuraho.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/gwalior_fort.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/mp_tiger.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/narmada_river.png');"></div>
+    <div class="auth-bg-slide" style="background-image: url('assets/wheat_fields.png');"></div>
+  </div>
+  <div class="auth-bg-overlay"></div>
+  <div class="auth-orbs-container">
+    <div class="auth-orb orb-primary"></div>
+    <div class="auth-orb orb-secondary"></div>
+    <div class="auth-orb orb-saffron"></div>
+  </div>
+  <div class="auth-particles"></div>
+
+  <!-- Primary Wrapper -->
+  <main class="auth-wrapper">
+    <div class="auth-container">
+      <div class="auth-card">
+        
+        <!-- Loading & Success Fullscreen Overlay -->
+        <div class="auth-loader-overlay" id="auth-overlay">
+          <div class="auth-overlay-spinner" id="auth-spinner"></div>
+          <div class="auth-loader-text" id="auth-loader-text">Verifying OTP code...</div>
+          <div class="auth-success-box" id="auth-success-box">
+            <div class="success-checkmark">
+              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+              </svg>
+            </div>
+            <h3 class="auth-overlay-text" id="auth-success-title">Verification Successful</h3>
+            <p class="auth-subtitle" id="auth-success-desc" style="margin-top: 0.5rem;">Redirecting to portal...</p>
+          </div>
+        </div>
+
+        <!-- Emblem & Card Header -->
+        <div class="auth-logo-header">
+          <img src="assets/mp_logo.png" alt="MP Government Emblem" class="auth-emblem">
+          <h2 class="auth-title" data-translate="otp_title">OTP Verification</h2>
+          <p class="auth-subtitle" data-translate="otp_subtitle">Enter the 6-digit code sent to your registered device</p>
+        </div>
+
+        <!-- OTP Verification Form -->
+        <form id="otp-form" novalidate>
+          <div class="otp-sent-info" style="text-align: center; font-size: 0.9rem; color: var(--text-secondary);" data-translate="otp_sent_to">
+            Verification code sent to: <strong id="otp-target">your registered device</strong>
+          </div>
+
+          <!-- Multi-box Code Input fields -->
+          <div class="otp-inputs-container">
+            <input type="tel" class="otp-digit-box" pattern="[0-9]" inputmode="numeric" required maxlength="1" aria-label="Digit 1">
+            <input type="tel" class="otp-digit-box" pattern="[0-9]" inputmode="numeric" required maxlength="1" aria-label="Digit 2">
+            <input type="tel" class="otp-digit-box" pattern="[0-9]" inputmode="numeric" required maxlength="1" aria-label="Digit 3">
+            <input type="tel" class="otp-digit-box" pattern="[0-9]" inputmode="numeric" required maxlength="1" aria-label="Digit 4">
+            <input type="tel" class="otp-digit-box" pattern="[0-9]" inputmode="numeric" required maxlength="1" aria-label="Digit 5">
+            <input type="tel" class="otp-digit-box" pattern="[0-9]" inputmode="numeric" required maxlength="1" aria-label="Digit 6">
+          </div>
+
+          <!-- Countdown timer / Resend toggle -->
+          <div class="otp-timer-wrapper" id="timer-wrapper" data-translate="otp_timer_lbl">
+            Resend OTP in: <span class="otp-timer-count" id="timer-val">60</span>s
+          </div>
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <button class="btn-resend-otp" id="resend-otp-btn" style="display: none;" data-translate="link_resend">Resend OTP</button>
+          </div>
+
+          <button type="submit" class="btn-auth-submit">
+            <span class="btn-auth-spinner"></span>
+            <span data-translate="btn_verify">Verify & Access Portal</span>
+          </button>
+        </form>
+
+        <!-- Redirect Link Option -->
+        <div class="auth-redirect-footer">
+          <span data-translate="have_account">Already have an account?</span>
+          <a href="login.html" data-translate="link_login">Login Here</a>
+        </div>
+        
+      </div>
+    </div>
+  </main>
+
+  <!-- Interactive JavaScript logic -->
+  <script src="js/auth.js"></script>
+</body>
+</html>

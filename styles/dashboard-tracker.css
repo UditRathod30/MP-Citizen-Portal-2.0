@@ -1,0 +1,296 @@
+/* 
+ * MP Citizen Portal 2.0 - Dashboard Tracker Styles
+ * Author: Senior UI/UX Designer & Frontend Architect
+ */
+
+/* --- Grid Splitter Layout --- */
+.tracker-layout-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.75rem;
+}
+
+.tracker-list-col {
+  grid-column: span 7;
+}
+
+.tracker-timeline-col {
+  grid-column: span 5;
+}
+
+/* --- Search & Filter Header --- */
+.tracker-search-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tracker-search-bar input {
+  flex-grow: 1;
+  padding: 0.65rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.tracker-search-bar input:focus {
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tracker-filter-select {
+  padding: 0.65rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  outline: none;
+}
+
+/* --- Application Item Cards --- */
+.app-tracker-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.app-tracker-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  cursor: pointer;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.02);
+  transition: var(--transition-smooth);
+}
+
+.app-tracker-item:hover, .app-tracker-item.active {
+  border-color: var(--color-primary);
+  background: rgba(99, 102, 241, 0.06);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.08);
+}
+
+.app-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.app-item-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.app-item-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.75rem;
+}
+
+.app-item-id {
+  font-family: monospace;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Status Badges */
+.app-status-badge {
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.app-status-badge.approved {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: var(--color-green);
+}
+
+.app-status-badge.progress {
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  color: var(--color-secondary);
+}
+
+.app-status-badge.clarification {
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  color: var(--color-saffron);
+}
+
+.app-tracker-action {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* --- Vertical Progress Timeline Card --- */
+.timeline-card-header {
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.timeline-card-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Vertical Timeline Track */
+.vertical-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1rem 0;
+}
+
+.vertical-timeline::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 2px;
+  height: calc(100% - 16px);
+  background: var(--border-color);
+  z-index: 1;
+}
+
+/* Timeline Item Nodes */
+.timeline-node {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-node:last-child {
+  margin-bottom: 0;
+}
+
+/* Dot Bullet */
+.timeline-bullet {
+  position: absolute;
+  left: -2rem;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--text-muted);
+  z-index: 5;
+  transition: var(--transition-smooth);
+}
+
+/* Node States */
+.timeline-node.completed .timeline-bullet {
+  background: var(--color-green);
+  border-color: var(--color-green);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.timeline-node.active .timeline-bullet {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  animation: timelinePulse 1.5s infinite ease-in-out;
+}
+
+@keyframes timelinePulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+.timeline-node.pending .timeline-bullet {
+  background: var(--bg-primary);
+  border-color: var(--text-muted);
+}
+
+/* Timeline Content */
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.timeline-stage-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.timeline-node.active .timeline-stage-title,
+.timeline-node.completed .timeline-stage-title {
+  color: var(--text-primary);
+}
+
+.timeline-stage-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.timeline-stage-time {
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+
+/* Action Banner in Tracker */
+.timeline-action-card {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--border-radius-sm);
+  display: none;
+}
+
+.timeline-action-card.active {
+  display: block;
+}
+
+.timeline-action-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ef4444;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-action-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-width: 992px) {
+  .tracker-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .tracker-list-col, .tracker-timeline-col {
+    grid-column: span 12;
+  }
+}

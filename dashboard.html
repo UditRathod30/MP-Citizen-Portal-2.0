@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Citizen Dashboard - MP Citizen Portal 2.0. Manage your applications, documents, and discover state welfare schemes.">
+  <title data-translate="portal_title">Citizen Dashboard | MP Citizen Portal 2.0</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Chart.js Library (via CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Modular Stylesheets (Divided per dashboard module) -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dashboard-common.css">
+  <link rel="stylesheet" href="styles/dashboard-overview.css">
+  <link rel="stylesheet" href="styles/dashboard-tracker.css">
+  <link rel="stylesheet" href="styles/dashboard-locker.css">
+  <link rel="stylesheet" href="styles/dashboard-schemes.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- Fullscreen Heritage Slideshow Background -->
+  <div class="db-bg-slider">
+    <div class="db-bg-slide" style="background-image: url('assets/sanchi_stupa.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/khajuraho.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/gwalior_fort.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/mp_tiger.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/narmada_river.png');"></div>
+    <div class="db-bg-slide" style="background-image: url('assets/wheat_fields.png');"></div>
+  </div>
+  <div class="db-bg-overlay"></div>
+  <div class="db-orbs-container">
+    <div class="db-orb orb-primary"></div>
+    <div class="db-orb orb-secondary"></div>
+    <div class="db-orb orb-saffron"></div>
+  </div>
+  <div class="db-particles"></div>
+
+  <!-- Main Dashboard Wrapper Layout -->
+  <div class="dashboard-wrapper">
+
+    <!-- Sidebar Collapsible Panel -->
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <!-- Brand logo header -->
+        <div class="sidebar-brand">
+          <img src="assets/mp_logo.png" alt="MP emblem Logo" class="sidebar-emblem">
+          <div class="sidebar-brand-text">
+            <span class="sidebar-title" data-translate="auth_portal_title">MP Citizen Portal 2.0</span>
+            <span class="sidebar-subtitle">Citizen Center</span>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="sidebar-menu" aria-label="Dashboard Menu">
+          <button class="sidebar-link active" data-target="overview" aria-label="Overview Dashboard">
+            <i class="fas fa-chart-line"></i>
+            <span class="sidebar-link-text" data-translate="nav_overview">Overview</span>
+          </button>
+          <button class="sidebar-link" data-target="tracker" aria-label="Track Applications Status">
+            <i class="fas fa-route"></i>
+            <span class="sidebar-link-text" data-translate="nav_tracker">Track Status</span>
+          </button>
+          <button class="sidebar-link" data-target="locker" aria-label="Digital Document Locker">
+            <i class="fas fa-folder-open"></i>
+            <span class="sidebar-link-text" data-translate="nav_locker">Doc Locker</span>
+          </button>
+          <button class="sidebar-link" data-target="schemes" aria-label="State Welfare Schemes">
+            <i class="fas fa-hands-holding-child"></i>
+            <span class="sidebar-link-text" data-translate="nav_schemes">Welfare Schemes</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Logged User Profile Footer Info -->
+      <div class="sidebar-footer">
+        <div class="sidebar-avatar">RK</div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name">Rajesh Kumar</span>
+          <span class="sidebar-user-role" data-translate="lbl_verified"><i class="fas fa-badge-check" style="color:var(--color-secondary);"></i> Profile Verified</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Offsets Grid -->
+    <div class="main-content">
+      
+      <!-- Sticky Header Bar -->
+      <header class="db-header">
+        <div class="db-header-left">
+          <button class="btn-sidebar-toggle" id="sidebar-toggle-btn" aria-label="Toggle Sidebar Menu">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h1 class="brand-title" id="header-view-title" style="font-size: 1.25rem;" data-translate="view_overview">Overview Hub</h1>
+        </div>
+
+        <!-- Right Side Header Controls -->
+        <div class="db-header-right">
+          
+          <!-- Language Switcher Button -->
+          <button class="btn-lang" id="lang-toggle-btn">हिन्दी</button>
+          
+          <!-- Theme Switcher Button -->
+          <button class="btn-toggle" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+            <i class="fas fa-sun"></i>
+          </button>
+
+          <!-- Notification Bell Dropdown -->
+          <div class="notification-bell-wrapper">
+            <button class="btn-header-action" id="notification-bell-btn" aria-label="Open Notifications bell">
+              <i class="fas fa-bell"></i>
+              <span class="bell-badge">2</span>
+            </button>
+
+            <!-- Dropdown panel -->
+            <div class="notification-dropdown" id="notification-dropdown">
+              <div class="notification-header">
+                <h4 data-translate="notif_title">Notifications</h4>
+                <button class="btn-clear-notif" id="clear-notif-btn" data-translate="btn_clear">Clear All</button>
+              </div>
+              <div class="notification-list" id="notification-list">
+                <div class="notification-item">
+                  <div class="notif-icon approved"><i class="fas fa-check"></i></div>
+                  <div class="notif-body">
+                    <span class="notif-text" data-translate="notif_item1">Your Domicile Certificate application has been approved!</span>
+                    <span class="notif-time">2 hours ago</span>
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <div class="notif-icon alert"><i class="fas fa-triangle-exclamation"></i></div>
+                  <div class="notif-body">
+                    <span class="notif-text" data-translate="notif_item2">Ration Card requires document correction. Click to fix.</span>
+                    <span class="notif-time">1 day ago</span>
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <div class="notif-icon"><i class="fas fa-solar-panel"></i></div>
+                  <div class="notif-body">
+                    <span class="notif-text" data-translate="notif_item3">CM Solar Pump Subsidy enrollment starts today.</span>
+                    <span class="notif-time">2 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User avatar indicator menu (Back home link option) -->
+          <a href="index.html" class="header-profile-menu" title="Log out and return home">
+            <div class="sidebar-avatar" style="width:36px; height:36px;">RK</div>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Central Dashboard Sections -->
+      <main class="db-container">
+
+        <!-- 1. SECTION: OVERVIEW HUB -->
+        <section id="overview-section" class="db-section active">
+          
+          <!-- Welcome Banner Card -->
+          <div class="db-welcome-card">
+            <div class="db-welcome-left">
+              <div class="db-welcome-avatar">RK</div>
+              <div class="db-welcome-text">
+                <h2 data-translate="welcome_greeting">Good Day, Rajesh Kumar</h2>
+                <p data-translate="welcome_desc">Manage your welfare schemes and official applications from your personalized governance hub.</p>
+                <!-- Verification status badges -->
+                <div class="db-verification-badges">
+                  <span class="verification-badge"><i class="fas fa-shield-halved"></i> Aadhaar Verified</span>
+                  <span class="verification-badge"><i class="fas fa-circle-check"></i> Mobile Verified</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile Info Right -->
+            <div class="db-welcome-right">
+              <div class="citizen-id-box">
+                <div class="citizen-id-lbl" data-translate="lbl_citizen_id">Citizen Portal ID</div>
+                <div class="citizen-id-val">MP-CIT-903289</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Statistics Cards Grid -->
+          <div class="db-stats-grid">
+            
+            <div class="db-stat-card db-glass-card hover-lift">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_submitted">Submitted Apps</span>
+                <span class="stat-card-number">8</span>
+              </div>
+              <div class="stat-card-icon-wrapper"><i class="fas fa-file-invoice"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift approved">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_approved">Approved Apps</span>
+                <span class="stat-card-number">5</span>
+              </div>
+              <div class="stat-card-icon-wrapper"><i class="fas fa-circle-check"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift review">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_review">Under Review</span>
+                <span class="stat-card-number">2</span>
+              </div>
+              <div class="stat-card-icon-wrapper"><i class="fas fa-magnifying-glass"></i></div>
+            </div>
+
+            <div class="db-stat-card db-glass-card hover-lift alert">
+              <div class="stat-card-left">
+                <span class="stat-card-title" data-translate="stat_action">Action Required</span>
+                <span class="stat-card-number" style="color: #ef4444;">1</span>
+              </div>
+              <div class="stat-card-icon-wrapper"><i class="fas fa-triangle-exclamation"></i></div>
+            </div>
+
+          </div>
+
+          <!-- Charts Visualizations Layout Grid -->
+          <div class="db-charts-grid">
+            
+            <!-- Line Chart (submissions) -->
+            <div class="db-glass-card chart-card-col-8">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_line_title">Application Submissions Trend (6 Months)</h3>
+                <i class="fas fa-ellipsis-h" style="color: var(--text-muted);"></i>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="submissionTrendChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Doughnut Chart (categories) -->
+            <div class="db-glass-card chart-card-col-4">
+              <div class="db-chart-header">
+                <h3 class="db-chart-title" data-translate="chart_pie_title">Services Usage</h3>
+                <i class="fas fa-chart-pie" style="color: var(--text-secondary);"></i>
+              </div>
+              <div class="db-chart-container">
+                <canvas id="categoryUsageChart"></canvas>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Recent Activities & Quick actions -->
+          <div class="db-bottom-grid">
+            
+            <!-- Log activities -->
+            <div class="db-glass-card activity-card-col-7">
+              <h3 class="db-chart-title" style="margin-bottom: 1.5rem;" data-translate="lbl_recent_activity">Recent Portal Activity</h3>
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-item-left">
+                    <div class="activity-dot green"></div>
+                    <div class="activity-content">
+                      <span class="activity-text">Domicile Certificate verified & marked Approved</span>
+                      <span class="activity-time">Today, 11:20 AM</span>
+                    </div>
+                  </div>
+                  <span class="activity-status-pill">Issued</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item-left">
+                    <div class="activity-dot saffron"></div>
+                    <div class="activity-content">
+                      <span class="activity-text">Correction Flagged on Ration Card application</span>
+                      <span class="activity-time">Yesterday, 03:15 PM</span>
+                    </div>
+                  </div>
+                  <span class="activity-status-pill" style="background:rgba(249, 115, 22, 0.1); color:var(--color-saffron);">Alert</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item-left">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                      <span class="activity-text">Successful Login from Bhopal, MP IP: 165.20.12.87</span>
+                      <span class="activity-time">July 02, 10:45 AM</span>
+                    </div>
+                  </div>
+                  <span class="activity-status-pill" style="background:rgba(255, 255, 255, 0.05); color:var(--text-secondary);">Session</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Action Cards Grid -->
+            <div class="db-glass-card quickactions-card-col-5">
+              <h3 class="db-chart-title" style="margin-bottom: 1.5rem;" data-translate="lbl_quick_actions">Quick Action Grid</h3>
+              <div class="quickactions-list">
+                <div class="quickaction-tile db-glass-card hover-lift">
+                  <i class="fas fa-map-location-dot"></i>
+                  <span data-translate="qa_khasra">Get Khasra Map</span>
+                </div>
+                <div class="quickaction-tile db-glass-card hover-lift">
+                  <i class="fas fa-city"></i>
+                  <span data-translate="qa_tax">Property Tax</span>
+                </div>
+                <div class="quickaction-tile db-glass-card hover-lift">
+                  <i class="fas fa-headset"></i>
+                  <span data-translate="qa_grievance">CM 181 Complaint</span>
+                </div>
+                <div class="quickaction-tile db-glass-card hover-lift">
+                  <i class="fas fa-user-pen"></i>
+                  <span data-translate="qa_profile">Update Profile</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- 2. SECTION: APPLICATION TRACKER -->
+        <section id="tracker-section" class="db-section">
+          
+          <div class="tracker-layout-grid">
+            
+            <!-- Left: list of apps with search/filter -->
+            <div class="tracker-list-col">
+              <div class="db-glass-card" style="height: 100%;">
+                <h3 class="db-chart-title" style="margin-bottom: 1rem;" data-translate="tracker_title">Application Tracking System</h3>
+                
+                <!-- Filters bar -->
+                <div class="tracker-search-bar">
+                  <input type="text" id="tracker-search" placeholder="Search applications... " data-translate="search_app_placeholder">
+                  <select id="tracker-status-filter" class="tracker-filter-select">
+                    <option value="all" data-translate="filter_all">All Statuses</option>
+                    <option value="approved" data-translate="filter_approved">Approved</option>
+                    <option value="progress" data-translate="filter_progress">In Progress</option>
+                    <option value="clarification" data-translate="filter_action">Action Required</option>
+                  </select>
+                </div>
+
+                <!-- Scrollable apps list -->
+                <div class="app-tracker-list" id="app-tracker-list">
+                  <!-- Filled dynamically by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: vertical timeline tracker details -->
+            <div class="tracker-timeline-col">
+              <div class="db-glass-card" style="height: 100%;" id="timeline-card">
+                <div class="timeline-card-header">
+                  <h3 class="db-chart-title" id="timeline-app-name">Select Application</h3>
+                  <span class="timeline-card-subtitle" id="timeline-app-id">Select an application from list</span>
+                </div>
+
+                <!-- Timeline nodes list container -->
+                <div class="vertical-timeline" id="timeline-nodes-list">
+                  <div style="color: var(--text-muted); text-align: center; padding: 3rem 0;" data-translate="timeline_select_prompt">
+                    Select an application from the history panel to display live tracking details.
+                  </div>
+                </div>
+
+                <!-- Action banner correction -->
+                <div class="timeline-action-card" id="timeline-action-card">
+                  <div class="timeline-action-header">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <span data-translate="timeline_action_header">ACTION REQUIRED ON APPLICATION</span>
+                  </div>
+                  <p class="timeline-action-desc" id="timeline-action-desc"></p>
+                  <button class="btn-auth-submit" style="padding: 0.65rem;" onclick="alert('File selector opened...');" data-translate="btn_upload_correction">
+                    Upload Corrected Documents
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- 3. SECTION: DOCUMENT LOCKER -->
+        <section id="locker-section" class="db-section">
+          
+          <div class="db-glass-card" style="margin-bottom: 2rem;">
+            <h3 class="db-chart-title" style="margin-bottom: 0.35rem;" data-translate="locker_title">Digital Document Locker</h3>
+            <p class="auth-subtitle" style="margin-bottom: 0;" data-translate="locker_subtitle">Access digitally signed certificates and upload personal government files securely.</p>
+          </div>
+
+          <!-- Document Grid Tiles -->
+          <div class="locker-grid" id="locker-grid">
+            <!-- Renders dynamically by JS -->
+          </div>
+
+          <!-- Uploader Box Area -->
+          <div class="db-glass-card">
+            <div class="locker-upload-zone" id="locker-upload-zone">
+              <i class="fas fa-cloud-arrow-up upload-icon"></i>
+              <div class="upload-title" data-translate="upload_title">Drag & Drop Files Here</div>
+              <div class="upload-subtitle" data-translate="upload_subtitle">Click to upload caste, resident, or marksheet certificates (PDF/PNG format)</div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- 4. SECTION: WELFARE SCHEMES -->
+        <section id="schemes-section" class="db-section">
+          
+          <!-- AI search bar and console -->
+          <div class="schemes-search-console">
+            <h3 class="schemes-console-title" data-translate="schemes_title">Welfare Schemes & AI Search</h3>
+            <p class="schemes-console-desc" data-translate="schemes_subtitle">Enter queries to discover state welfare schemes you qualify to enroll in.</p>
+            
+            <div class="schemes-search-bar-wrapper">
+              <input type="text" id="schemes-search-bar" placeholder="Search schemes... (e.g. Ladli Behna)" data-translate="schemes_search_placeholder">
+              <button class="schemes-search-btn-icon" aria-label="Submit search"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+
+            <!-- Chips suggestions -->
+            <div class="schemes-suggestion-chips">
+              <button class="schemes-chip active" data-category="all" data-translate="chip_all">All Schemes</button>
+              <button class="schemes-chip" data-category="women" data-translate="chip_women">Women Welfare</button>
+              <button class="schemes-chip" data-category="education" data-translate="chip_education">Students & Youth</button>
+              <button class="schemes-chip" data-category="farming" data-translate="chip_farming">Farmers Benefits</button>
+            </div>
+          </div>
+
+          <!-- Schemes cards grid -->
+          <div class="schemes-grid" id="schemes-grid">
+            
+            <!-- Scheme 1 -->
+            <div class="scheme-card db-glass-card" data-category="women">
+              <div class="scheme-card-top">
+                <span class="scheme-badge" data-translate="chip_women">Women Welfare</span>
+                <h4 class="scheme-title">Ladli Behna Yojana</h4>
+                <p class="scheme-desc">Provides financial assistance of ₹1250/month to women from economically weaker sections.</p>
+              </div>
+              <div class="scheme-card-bottom">
+                <span class="scheme-eligibility-summary" data-translate="scheme_eligibility"><i class="fas fa-circle-check"></i> Eligible based on profile</span>
+                <button class="btn-scheme-apply" onclick="alert('Application Form Opened for Ladli Behna');" data-translate="btn_scheme_apply">Apply for Scheme</button>
+              </div>
+            </div>
+
+            <!-- Scheme 2 -->
+            <div class="scheme-card db-glass-card scholarship" data-category="education">
+              <div class="scheme-card-top">
+                <span class="scheme-badge" data-translate="chip_education">Students & Youth</span>
+                <h4 class="scheme-title">Post-Matric Scholarship</h4>
+                <p class="scheme-desc">Fee reimbursement and monthly allowance for college students belonging to SC/ST/OBC categories.</p>
+              </div>
+              <div class="scheme-card-bottom">
+                <span class="scheme-eligibility-summary" data-translate="scheme_eligibility"><i class="fas fa-circle-check"></i> Eligible based on profile</span>
+                <button class="btn-scheme-apply" onclick="alert('Application Form Opened for Post-Matric');" data-translate="btn_scheme_apply">Apply for Scheme</button>
+              </div>
+            </div>
+
+            <!-- Scheme 3 -->
+            <div class="scheme-card db-glass-card" data-category="farming">
+              <div class="scheme-card-top">
+                <span class="scheme-badge" data-translate="chip_farming">Farmers Benefits</span>
+                <h4 class="scheme-title">Solar Pump Subsidy Program</h4>
+                <p class="scheme-desc">Provides up to 90% government subsidy to purchase agricultural solar water pumps.</p>
+              </div>
+              <div class="scheme-card-bottom">
+                <span class="scheme-eligibility-summary" data-translate="scheme_eligibility"><i class="fas fa-circle-check"></i> Eligible based on profile</span>
+                <button class="btn-scheme-apply" onclick="alert('Application Form Opened for Solar Pump Subsidy');" data-translate="btn_scheme_apply">Apply for Scheme</button>
+              </div>
+            </div>
+
+            <!-- Scheme 4 -->
+            <div class="scheme-card db-glass-card scholarship" data-category="education">
+              <div class="scheme-card-top">
+                <span class="scheme-badge" data-translate="chip_education">Students & Youth</span>
+                <h4 class="scheme-title">Free Laptop Incentive Scheme</h4>
+                <p class="scheme-desc">Provides ₹25,000 to purchase laptops for students scoring 75%+ in class 12th Board exams.</p>
+              </div>
+              <div class="scheme-card-bottom">
+                <span class="scheme-eligibility-summary" data-translate="scheme_eligibility"><i class="fas fa-circle-check"></i> Eligible based on profile</span>
+                <button class="btn-scheme-apply" onclick="alert('Application Form Opened for Free Laptop Scheme');" data-translate="btn_scheme_apply">Apply for Scheme</button>
+              </div>
+            </div>
+
+            <!-- Scheme 5 -->
+            <div class="scheme-card db-glass-card" data-category="women">
+              <div class="scheme-card-top">
+                <span class="scheme-badge" data-translate="chip_women">Women Welfare</span>
+                <h4 class="scheme-title">Ladli Laxmi Yojana 2.0</h4>
+                <p class="scheme-desc">Assures savings certificates and educational incentives for girl children born in MP families.</p>
+              </div>
+              <div class="scheme-card-bottom">
+                <span class="scheme-eligibility-summary" data-translate="scheme_eligibility"><i class="fas fa-circle-check"></i> Eligible based on profile</span>
+                <button class="btn-scheme-apply" onclick="alert('Application Form Opened for Ladli Laxmi Yojana');" data-translate="btn_scheme_apply">Apply for Scheme</button>
+              </div>
+            </div>
+
+            <!-- Empty suggestions display -->
+            <div class="schemes-empty-state" id="schemes-empty-state" data-translate="empty_schemes_text">
+              <i class="fas fa-circle-info"></i><br>No matching welfare schemes found. Try adjusting search query.
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- Fullscreen Document Viewer Modal Overlay -->
+  <div class="doc-viewer-modal" id="doc-viewer-modal">
+    <div class="doc-viewer-content">
+      <div class="doc-viewer-header">
+        <h3 class="doc-viewer-title" id="doc-viewer-title-name">Digital Certificate View</h3>
+        <button class="btn-doc-close" id="btn-doc-close" aria-label="Close Document Viewer Modal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="doc-viewer-body" id="doc-viewer-frame">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating AI Assistant Widget -->
+  <div class="db-floating-assistant">
+    <button class="btn-db-assistant-trigger" id="assistant-trigger" aria-label="Open AI helper bot">
+      <i class="fas fa-robot"></i>
+    </button>
+    
+    <!-- Chat window overlay -->
+    <div class="db-chatbot-window" id="chatbot-window">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+          <div class="chat-title-wrapper">
+            <h4>MP-AI Assistant</h4>
+            <span class="chat-status">Online</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" id="chat-close" aria-label="Close assistant chatbot"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <!-- Filled by JS -->
+      </div>
+
+      <form class="chat-input-area" id="chat-input-form">
+        <input type="text" id="chat-message-input" placeholder="Type a message..." data-translate="chat_placeholder">
+        <button type="submit" class="chat-send-btn" aria-label="Submit chat message"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard Business Logics script -->
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

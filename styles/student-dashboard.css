@@ -1,0 +1,248 @@
+/* 
+ * MP Citizen Portal 2.0 - Student Dashboard Styles
+ * Author: Senior UI/UX Designer & Frontend Architect
+ */
+
+:root {
+  /* Override Brand Color Accents to Vivid Blue */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-secondary: #06b6d4;
+  --border-glow: rgba(59, 130, 246, 0.2);
+}
+
+/* --- Animated Student Cap Visuals --- */
+.student-bg-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.15;
+}
+
+[data-theme="light"] .student-bg-decorations {
+  opacity: 0.06;
+}
+
+.floating-cap {
+  position: absolute;
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  animation: floatAcademic 14s ease-in-out infinite;
+}
+
+.cap-1 { top: 15%; left: 35%; animation-delay: 0s; }
+.cap-2 { top: 60%; left: 80%; animation-delay: -4s; font-size: 2rem; }
+.cap-3 { top: 75%; left: 15%; animation-delay: -8s; font-size: 1.75rem; }
+
+@keyframes floatAcademic {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-40px) rotate(15deg) scale(1.1);
+  }
+}
+
+/* --- Results Cards & Visual Table --- */
+.student-results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.student-results-table th, 
+.student-results-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.student-results-table th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.student-results-table td {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.student-results-table tr:hover td {
+  color: var(--text-primary);
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.grade-badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-green);
+}
+
+.grade-badge.b-grade {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--color-primary);
+}
+
+/* --- MPTAAS status stages --- */
+.mptaas-status-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 0 1rem;
+}
+
+.mptaas-status-container::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 2rem;
+  width: calc(100% - 4rem);
+  height: 3px;
+  background: var(--border-color);
+  z-index: 1;
+}
+
+.mptaas-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  width: 70px;
+  text-align: center;
+}
+
+.mptaas-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 3px solid var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  transition: var(--transition-smooth);
+}
+
+.mptaas-step.completed .mptaas-dot {
+  background: var(--color-green);
+  border-color: var(--color-green);
+  color: #fff;
+}
+
+.mptaas-step.active .mptaas-dot {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.mptaas-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.mptaas-step.active .mptaas-label,
+.mptaas-step.completed .mptaas-label {
+  color: var(--text-primary);
+}
+
+/* --- Internship Cards Grid --- */
+.internships-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.intern-card {
+  padding: 1.15rem;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.01);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition-smooth);
+}
+
+.intern-card:hover {
+  border-color: var(--color-primary);
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.intern-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.intern-company {
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.btn-intern-apply {
+  padding: 0.45rem 1rem;
+  border-radius: var(--border-radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.btn-intern-apply:hover {
+  background: var(--color-primary-hover);
+}
+
+/* --- Career Guidance Card --- */
+.career-guide-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.career-path-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem;
+  border-radius: var(--border-radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+}
+
+.career-path-icon {
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  margin-top: 0.15rem;
+}
+
+.career-path-text h5 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.career-path-text p {
+  font-size: 0.775rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
